@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+{% block title %} Home Page - Wedding {% endblock %}
+
+{% block content %}
+<p>This is the home page</p>
+<div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}">Name:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.will_attend.id_for_label }}">Will Attend:</label>
+                {{ form.will_attend }}
+            </div>
+            <div class="conditional-field">
+                <div class="form-group">
+                    <label for="{{ form.both_attending.id_for_label }}">Both Attending:</label>
+                    {{ form.both_attending }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.dietary_requirements.id_for_label }}">Dietary Requirements:</label>
+                    {{ form.dietary_requirements }}
+                    {{ form.other_dietary_input }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.attending_day2.id_for_label }}">Attending Day 2:</label>
+                    {{ form.attending_day2 }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+</div>
+<script>
+// HIDES OTHER QUESTIONS UNTIL YES IS SELECTED
+ document.addEventListener('DOMContentLoaded', function() {
+    const willAttendFields = document.querySelectorAll('input[name="will_attend"]');
+    const conditionalContainers = document.querySelectorAll('.conditional-field');
+
+    function toggleFields() {
+        let selectedValue;
+        willAttendFields.forEach(field => {
+            if (field.checked) {
+                selectedValue = field.value;
+            }
+        });
+
+        if (selectedValue === 'True') {  // 'True' is the value for 'Yes'
+            conditionalContainers.forEach(container => {
+                container.style.display = 'block';  // Show the container
+                // Enable all input, select, and textarea elements inside the container
+                container.querySelectorAll('input, select, textarea').forEach(input => input.disabled = false);
+            });
+        } else {
+            conditionalContainers.forEach(container => {
+                container.style.display = 'none';  // Hide the container
+                // Disable all input, select, and textarea elements inside the container
+                container.querySelectorAll('input, select, textarea').forEach(input => input.disabled = true);
+            });
+        }
+    }
+
+    willAttendFields.forEach(field => field.addEventListener('change', toggleFields));
+    toggleFields();  // Call once to set initial state
+});
+
+// OTHER CHOICE SELECTED
+document.addEventListener('DOMContentLoaded', function() {
+    const dietaryFields = document.querySelectorAll('input[name="dietary_requirements"]');
+    const otherDietaryField = document.querySelector('#id_other_dietary_input');
+
+    function toggleOtherDietaryField() {
+        let selectedValue;
+        dietaryFields.forEach(field => {
+            if (field.checked) {
+                selectedValue = field.value;
+            }
+        });
+
+        if (selectedValue === 'Other') {
+            otherDietaryField.style.display = 'block';
+        } else {
+            otherDietaryField.style.display = 'none';
+        }
+    }
+
+    dietaryFields.forEach(field => field.addEventListener('change', toggleOtherDietaryField));
+    toggleOtherDietaryField();  // Call once to set initial state
+});
+</script>
+
+{% endblock %}
