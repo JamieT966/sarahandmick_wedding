@@ -1,0 +1,16 @@
+body {
+    background-color: red;
+}
+
+.no-label + label {
+    display: none;
+}
+
+p {
+    font-size: xx-large;
+    color: red;
+}
+
+.form-container {
+    width: 500px;
+}

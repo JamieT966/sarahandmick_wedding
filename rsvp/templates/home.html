@@ -1,48 +1,43 @@
 {% extends "base.html" %} 
 {% block title %} Home Page - Wedding {% endblock %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <p>This is the home page</p>
 <div class="container-fluid">
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="{{ form.name.id_for_label }}">Name on invite</label>
-                {{ form.name }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.name2.id_for_label }}">Name two on invite (if applicable)</label>
-                {{ form.name2 }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.will_attend.id_for_label }}">Are you attending?</label>
-                {{ form.will_attend }}
-            </div>
-            <div class="conditional-field">
-                <div class="form-group">
-                    <label for="{{ form.both_attending.id_for_label }}">Is person two attending (if applicable)?</label>
-                    {{ form.both_attending }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.dietary_requirements.id_for_label }}">Do you have any dietary requirements?</label>
-                    {{ form.dietary_requirements }}
-                </div>
+    {% load crispy_forms_tags %}
 
-                <div class="form-group">
-                    {{ form.other_dietary_input }}
-                </div>
-
-                <div class="form-group">
-                    <label for="{{ form.attending_day2.id_for_label }}">Will you be attending day two?</label>
-                    {{ form.attending_day2 }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.music_requests.id_for_label }}">Is there any music you want to hear on the night?</label>
-                    {{ form.music_requests }}
-                </div>
+    <form method="post" class="form-container">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            {{ form.name|as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.name2|as_crispy_field }}
+        </div>
+        <div class="form-group">
+            {{ form.will_attend|as_crispy_field }}
+        </div>
+        <div class="conditional-field">
+            <div class="form-group">
+                {{ form.both_attending|as_crispy_field }}
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <div class="form-group">
+                {{ form.dietary_requirements|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.other_dietary_input|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.attending_day2|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.music_requests|as_crispy_field }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
 </div>
 
 <script>
