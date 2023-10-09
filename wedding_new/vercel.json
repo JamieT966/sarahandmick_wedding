@@ -27,10 +27,5 @@
             "dest": "wedding_new/wsgi.py"
         }
     ], 
-    "rewrites": [
-        { 
-            "source": "/(.*)", 
-            "destination": "/index.html"
-        }
-    ]
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
