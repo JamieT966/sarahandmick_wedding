@@ -5,6 +5,7 @@ class RSVPForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RSVPForm, self).__init__(*args, **kwargs)
         self.fields['other_dietary_input'].label = ""
+        self.fields['name2'].required = False
 
     YES_NO_CHOICES = [
         (True, 'Yes'),
