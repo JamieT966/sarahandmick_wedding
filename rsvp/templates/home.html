@@ -22,11 +22,20 @@
                 <div class="form-group">
                     <label for="{{ form.dietary_requirements.id_for_label }}">Dietary Requirements:</label>
                     {{ form.dietary_requirements }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.other_dietary_input.id_for_label }}">Other Dietary:</label>
                     {{ form.other_dietary_input }}
                 </div>
+
                 <div class="form-group">
                     <label for="{{ form.attending_day2.id_for_label }}">Attending Day 2:</label>
                     {{ form.attending_day2 }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.music_requests.id_for_label }}">Music Requests:</label>
+                    {{ form.music_requests }}
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -63,30 +72,6 @@
 
     willAttendFields.forEach(field => field.addEventListener('change', toggleFields));
     toggleFields();  // Call once to set initial state
-});
-
-// OTHER CHOICE SELECTED
-document.addEventListener('DOMContentLoaded', function() {
-    const dietaryFields = document.querySelectorAll('input[name="dietary_requirements"]');
-    const otherDietaryField = document.querySelector('#id_other_dietary_input');
-
-    function toggleOtherDietaryField() {
-        let selectedValue;
-        dietaryFields.forEach(field => {
-            if (field.checked) {
-                selectedValue = field.value;
-            }
-        });
-
-        if (selectedValue === 'Other') {
-            otherDietaryField.style.display = 'block';
-        } else {
-            otherDietaryField.style.display = 'none';
-        }
-    }
-
-    dietaryFields.forEach(field => field.addEventListener('change', toggleOtherDietaryField));
-    toggleOtherDietaryField();  // Call once to set initial state
 });
 </script>
 

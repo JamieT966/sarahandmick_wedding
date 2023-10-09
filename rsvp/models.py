@@ -5,29 +5,26 @@ YES_NO_CHOICES = [
     (False, 'No')
 ]
 
-DIETARY_CHOICES = [
-    ('Coeliac', 'Coeliac'),
-    ('Lactose', 'Lactose Intolerant'),
-    ('Vegetarian', 'Vegetarian'),
-    ('Vegan', 'Vegan'),
-    ('Other', 'Other')
-]
-
 DAY2_CHOICES = [
     ('Yes', 'Yes'),
     ('No', 'No'),
     ('Maybe', 'Maybe')
 ]
 
-class RSVP(models.Model):
+class DietaryRequirement(models.Model):
+    name = models.CharField(max_length=50, unique=True)
 
+    def __str__(self):
+        return self.name
+
+class RSVP(models.Model):
     name = models.CharField(max_length=255)
     will_attend = models.BooleanField(choices=YES_NO_CHOICES)
     both_attending = models.BooleanField(null=True, blank=True)
-    dietary_requirements = models.CharField(max_length=50, choices=DIETARY_CHOICES)
+    dietary_requirements = models.ManyToManyField(DietaryRequirement, blank=True)
+    other_dietary_input = models.CharField(max_length=255, blank=True)
     attending_day2 = models.CharField(max_length=50, choices=DAY2_CHOICES, blank=True, null=True)
-    music_requests = models.TextField(blank=True, null=True)
-
+    music_requests = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
