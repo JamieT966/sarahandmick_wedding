@@ -29,7 +29,7 @@ class RSVPForm(forms.ModelForm):
         required=False
     )
     other_dietary_input = forms.CharField(
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Other Dietary Requirements'}),
         required=False
     )
     attending_day2 = forms.ChoiceField(
@@ -44,7 +44,7 @@ class RSVPForm(forms.ModelForm):
 
     class Meta:
         model = RSVP
-        fields = ['name', 'will_attend', 'both_attending', 'dietary_requirements', 'other_dietary_input', 'attending_day2', 'music_requests']
+        fields = ['name', 'name2', 'will_attend', 'both_attending', 'dietary_requirements', 'other_dietary_input', 'attending_day2', 'music_requests']
 
     def clean(self):
         cleaned_data = super().clean()
@@ -56,5 +56,5 @@ class RSVPForm(forms.ModelForm):
             # If "No" is selected, we can ignore or clear the other fields
             for field in ['both_attending', 'dietary_requirements', 'attending_day2', 'music_requests']:
                 cleaned_data[field] = None
-
+            cleaned_data['dietary_requirements'] = []
         return cleaned_data
