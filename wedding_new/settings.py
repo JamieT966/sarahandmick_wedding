@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import dj_database_url
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,7 @@ SECRET_KEY = 'django-insecure-$!u1%iw-56l#ka&&-00d=xe&erk2o1lqukkip&*v8hp%m^6ao3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'wedding-new-jamiet966.vercel.app', 'https://wedding-new-jamiet966.vercel.app']
-
-STATIC_ROOT = BASE_DIR / "staticfiles" / "static"
+ALLOWED_HOSTS = ['.vercel.app', 'now.sh', '127.0.0.1']
 
 # Application definition
 
@@ -125,6 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+
 MEDIA_URL = 'media/'
 
 # Default primary key field type

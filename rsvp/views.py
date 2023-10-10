@@ -10,4 +10,4 @@ def home_view(request):
     else:
         form = RSVPForm()
 
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'index.html', {'form': form})
