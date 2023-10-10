@@ -11,3 +11,7 @@ def home_view(request):
         form = RSVPForm()
 
     return render(request, 'index.html', {'form': form})
+
+
+def success_view(request):
+    return render(request, 'success.html')
