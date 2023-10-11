@@ -57,7 +57,7 @@ class RSVPForm(forms.ModelForm):
         fields = ['name', 'name2', 'will_attend', 'both_attending', 'dietary_requirements', 'other_dietary_input', 'attending_day2', 'music_requests']
         labels = {
             'name': 'Name on Invite',
-            'name2': 'Name Two on Invite (If Applicable)',
+            'name2': 'Name Two on Invite (if applicable)',
             'will_attend': 'Are you attending?',
             'both_attending': 'Is person two attending (if applicable)?',
             'dietary_requirements': 'Do you have any dietary requirements?',

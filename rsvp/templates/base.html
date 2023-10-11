@@ -13,12 +13,14 @@
 <body>
     <header>
         {% block header %}
-        <nav>
-            <ul>
-                <li><a href="{% url 'home_view' %}">Home</a></li>
-                <!-- Add other navigation links as needed -->
-            </ul>
-        </nav>
+        <div class="content"></div>
+            <a href="{% url 'home_view' %}">
+                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049038/Logo_Idea_250x250_qyuiyv.png" alt="Logo" class="logo">
+            </a>
+            <nav>
+                <!-- Your navigation links here -->
+            </nav>
+        </div>
         {% endblock header %}
     </header>
 
@@ -28,8 +30,8 @@
         {% endblock content %}
     </main>
 
-    <footer>
-
+    <footer class="footer">
+        
     </footer>
 
     <!-- Add other scripts here as needed -->

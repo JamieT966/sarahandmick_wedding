@@ -2,13 +2,46 @@
 {% block title %} Home Page - Wedding {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
+<!-- Hero Section -->
 <div class="hero-image intro-section p-3 container-fluid d-flex justify-content-center align-items-center">
-
+    <div class="hero-content text-center">
+        <h1>Emer & Jamie Are Getting Hitched</h1>
+        <p class="sub-heading">We can't wait to celebrate with you</p>
+        <a href="#rsvp-form" class="btn-pink scroll-to-form">RSVP Here</a>
+    </div>
 </div>
-<div class="container-fluid">
+
+<!-- 3 ICONS -->
+<section class="container column-section my-5">
+    <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-4 text-center">
+            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Location_Green_rfehbc.png" alt="Description of Image 1" class="icon-img mb-3">
+            <h3>Four Seasons</h3>
+            <p>Carlingford, Co.Louth</p>
+        </div>
+        
+        <!-- Column 2 -->
+        <div class="col-md-4 text-center">
+            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Time_Green_bdyuiq.png" alt="Description of Image 2" class="icon-img mb-3">
+            <h3>29 March 2024</h3>
+            <p>14:00</p>
+        </div>
+        
+        <!-- Column 3 -->
+        <div class="col-md-4 text-center">
+            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Menu_Green_fjei91.png" alt="Description of Image 3" class="icon-img mb-3">
+            <h3>Menu</h3>
+            <p>Menu coming soon</p>
+        </div>
+    </div>
+</section>
+
+<!-- RSVP Form -->
+<div class="container-fluid d-flex justify-content-center align-items-center">
     {% load crispy_forms_tags %}
 
-    <form method="post" class="form-container">
+    <form method="post" class="form-container p-3 mb-5 shadow" id="rsvp-form">
         {% csrf_token %}
         
         <div class="form-group">
@@ -37,9 +70,8 @@
                 {{ form.music_requests|as_crispy_field }}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn-green">Submit</button>
     </form>
-    
 </div>
 
 <script>

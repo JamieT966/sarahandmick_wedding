@@ -1,28 +1,189 @@
-body {
-    background-color: red;
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+
+:root {
+    --je_green: #344F3F;
+    --je_pink: #E4AEC5;
+    --je_light_green: #82A284;
+    --je_light_pink: #FFC4DD;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+h1, h2, h3, h4, h5 {
+    font-family: "Quattrocento", sans-serif;
+}
+
+p {
+    font-family: "Quattrocento Sans", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+  }
+
+.content {
+    flex: 1 0 auto;
+  }
+
+.footer {
+    flex-shrink: 0;
+  }
+
+/* Hero Section */
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 125px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.intro-section {
+    height: 600px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.hero-image {
+    position: relative; /* Added this to position the pseudo-element relative to hero-image */
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center top fixed;
+    background-size: cover;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1); /* Adjust the 0.5 value to make it darker or lighter */
+    pointer-events: none; /* Ensures the overlay doesn't interfere with any interactions */
+    z-index: 1; /* Ensures the overlay is above the background image */
+}
+.hero-content {
+    z-index: 1;
+    color: white; 
+}
+
+.sub-heading {
+    margin-bottom: 25px;
+}
+
+.hero-content h1, p {
+    font-weight: 700;
+    /* color: #F2BED1; */
+}
+
+/* Button Styling */
+.btn-pink {
+    background-color: var(--je_pink);
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.btn-pink:hover {
+    background-color: #d3a0a0;
+    transform: scale(1.05);
+}
+
+.btn-pink:active {
+    background-color: var(--je_pink);
+    transform: scale(1);
+}
+
+.btn-pink:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(229, 183, 183, 0.5);
+}
+
+.btn-green {
+    background-color: var(--je_light_green);
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-green:hover {
+    background-color: #344f3f;
+    transform: scale(1.05);
+}
+
+.btn-green:active {
+    background-color: #344f3f;
+    transform: scale(1);
+}
+
+.btn-green:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 79, 63, 0.5);
+}
+
+/* Icon section */
+
+.icon-img {
+    height: 200px;
+}
+
+.container .col-md-4 {
+    padding: 20px;
+}
+
+.column-section .col-md-4 {
+    border-right: 1px solid #E5B7B7; /* or any color you prefer */
+    position: relative;
+}
+
+.column-section .col-md-4:last-child {
+    border-right: none;
+}
+
+@media (max-width: 767.98px) { /* Bootstrap's md breakpoint */
+    .column-section .col-md-4 {
+        border-right: none;
+        border-bottom: 1px solid #E5B7B7;
+    }
+
+    .column-section .col-md-4:last-child {
+        border-bottom: none;
+    }
+}
+
+.column-section .col-md-4 {
+    padding: 20px; /* Adjust as needed */
+}
+
+/* Form Styling */
 
 .no-label + label {
     display: none;
 }
 
-p {
-    font-size: xx-large;
-    color: red;
-}
-
 .form-container {
     width: 500px;
+    border-radius: 5px;
+    background-color: var(--je_pink);
+    color: #fff;
 }
 
-.intro-section {
-    height: 35rem;
-    text-align: center;
-    color: var(--off_white);
-    font-size: 1.2rem;
-}
-
-.hero-image {
-    background: url('https://res.cloudinary.com/du0modwwh/image/upload/v1659046711/hero5_qmcc5i.png') no-repeat fixed 0% 100%;
-    background-size: cover;
+.form-label {
+    font-family: "Quattrocento Sans", sans-serif;
 }
