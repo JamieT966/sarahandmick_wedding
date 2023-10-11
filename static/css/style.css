@@ -14,3 +14,15 @@ p {
 .form-container {
     width: 500px;
 }
+
+.intro-section {
+    height: 35rem;
+    text-align: center;
+    color: var(--off_white);
+    font-size: 1.2rem;
+}
+
+.hero-image {
+    background: url('https://res.cloudinary.com/du0modwwh/image/upload/v1659046711/hero5_qmcc5i.png') no-repeat fixed 0% 100%;
+    background-size: cover;
+}
