@@ -24,8 +24,9 @@ from rsvp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('rsvp.urls')),
-    path('success/', views.success_view, name='success_page'),
     path('', views.home_view, name='home'),
+    path('yes-response/', views.yes_response_view, name='yes_response_page'),
+    path('no-response/', views.no_response_view, name='no_response_page'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
