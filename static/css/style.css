@@ -187,3 +187,28 @@ body {
 .form-label {
     font-family: "Quattrocento Sans", sans-serif;
 }
+
+/* Form submitted page */
+.form-submitted {
+        height: 100vh;
+        text-align: center;
+        font-size: 1.2rem;
+}
+
+.form-submitted-bg {
+    position: relative; /* Added this to position the pseudo-element relative to hero-image */
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center top fixed;
+    background-size: cover;
+}
+
+.form-submitted-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust the 0.5 value to make it darker or lighter */
+    pointer-events: none; /* Ensures the overlay doesn't interfere with any interactions */
+    z-index: 1; /* Ensures the overlay is above the background image */
+}
