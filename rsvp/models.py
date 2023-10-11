@@ -17,15 +17,24 @@ class DietaryRequirement(models.Model):
     def __str__(self):
         return self.name
 
+
 class RSVP(models.Model):
     name = models.CharField(max_length=255)
     name2 = models.CharField(max_length=255)
     will_attend = models.BooleanField(choices=YES_NO_CHOICES)
     both_attending = models.BooleanField(null=True, blank=True)
+    not_attending_guest = models.CharField(max_length=255, blank=True)
     dietary_requirements = models.ManyToManyField(DietaryRequirement, blank=True)
     other_dietary_input = models.CharField(max_length=255, blank=True)
     attending_day2 = models.CharField(max_length=50, choices=DAY2_CHOICES, blank=True, null=True)
     music_requests = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class GuestName(models.Model):
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name

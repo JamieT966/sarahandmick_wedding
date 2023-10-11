@@ -35,6 +35,7 @@
             <p>To be decided</p>
         </div>
     </div>
+</div>
 </section>
 
 <!-- RSVP Form -->
@@ -48,31 +49,34 @@
             {{ form.name|as_crispy_field }}
         </div>
         <div class="form-group">
-            {{ form.name2|as_crispy_field }}
-        </div>
-        <div class="form-group">
             {{ form.will_attend|as_crispy_field }}
         </div>
         <div class="conditional-field">
+            <div class="line-seperator"></div>
             <div class="form-group">
                 {{ form.both_attending|as_crispy_field }}
             </div>
+            <div class="form-group">
+                {{ form.not_attending_guest|as_crispy_field }}
+            </div>
+            <div class="line-seperator"></div>
             <div class="form-group">
                 {{ form.dietary_requirements|as_crispy_field }}
             </div>
             <div class="form-group">
                 {{ form.other_dietary_input|as_crispy_field }}
             </div>
+            <div class="line-seperator"></div>
             <div class="form-group">
                 {{ form.attending_day2|as_crispy_field }}
             </div>
+            <div class="line-seperator"></div>
             <div class="form-group">
                 {{ form.music_requests|as_crispy_field }}
             </div>
         </div>
         <button type="submit" class="btn-green">Submit</button>
     </form>
-</div>
 
 <script>
 // HIDES OTHER QUESTIONS UNTIL YES IS SELECTED

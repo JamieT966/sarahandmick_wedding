@@ -1,11 +1,11 @@
 from django import forms
-from .models import RSVP, DietaryRequirement
+from .models import RSVP, DietaryRequirement, GuestName
 
 class RSVPForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RSVPForm, self).__init__(*args, **kwargs)
         self.fields['other_dietary_input'].label = ""
-        self.fields['name2'].required = False
+        self.fields['not_attending_guest'].label = ""
 
     YES_NO_CHOICES = [
         (True, 'Yes'),
@@ -15,19 +15,27 @@ class RSVPForm(forms.ModelForm):
     DAY2_CHOICES = [
         ('Yes', 'Yes'),
         ('No', 'No'),
-        ('Maybe', 'Maybe')
+        ('Maybe', "I'll see how the head is")
     ]
 
+    name = forms.ModelChoiceField(
+        label="Name(s) on invite",
+        queryset=GuestName.objects.all()
+    )
     will_attend = forms.ChoiceField(
-        label="Are you attending?",
+        label="Are you or anyone on the invite attending?",
         choices=YES_NO_CHOICES,
         widget=forms.RadioSelect,
         required=True
     )
     both_attending = forms.ChoiceField(
-        label="Is person two attending (if applicable)?",
+        label="Is everyone on the invite attending?",
         choices=YES_NO_CHOICES,
         widget=forms.RadioSelect,
+        required=False
+    )
+    not_attending_guest = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Name(s) of people not attending', 'class': 'no-label'}),
         required=False
     )
     dietary_requirements = forms.ModelMultipleChoiceField(
@@ -54,10 +62,8 @@ class RSVPForm(forms.ModelForm):
 
     class Meta:
         model = RSVP
-        fields = ['name', 'name2', 'will_attend', 'both_attending', 'dietary_requirements', 'other_dietary_input', 'attending_day2', 'music_requests']
+        fields = ['name', 'will_attend', 'both_attending', 'not_attending_guest', 'dietary_requirements', 'other_dietary_input', 'attending_day2', 'music_requests']
         labels = {
-            'name': 'Name on Invite',
-            'name2': 'Name Two on Invite (if applicable)',
             'will_attend': 'Are you attending?',
             'both_attending': 'Is person two attending (if applicable)?',
             'dietary_requirements': 'Do you have any dietary requirements?',
@@ -69,6 +75,10 @@ class RSVPForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         will_attend = cleaned_data.get("will_attend")
+        
+        if self.is_valid():
+            guest_name = self.cleaned_data['name']
+            guest_name.delete()
 
         if will_attend == 'True':  # 'True' is the string representation of True
             pass

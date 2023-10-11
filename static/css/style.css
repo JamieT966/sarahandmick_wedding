@@ -123,8 +123,8 @@ body {
 }
 
 .btn-green:hover {
-    background-color: #344f3f;
-    transform: scale(1.05);
+    background-color: #355240;
+    /* transform: scale(1.05); */
 }
 
 .btn-green:active {
@@ -186,6 +186,14 @@ body {
 
 .form-label {
     font-family: "Quattrocento Sans", sans-serif;
+    margin-top: 15px;
+}
+
+.line-seperator {
+    width: 100%;
+    border-bottom: 1px solid white;
+    margin: 0 auto;
+    padding: 4px 0;
 }
 
 /* Form submitted page */
