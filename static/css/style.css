@@ -38,9 +38,16 @@ body {
     flex: 1 0 auto;
   }
 
-.footer {
-    flex-shrink: 0;
+footer {
+    height: 75px;
   }
+
+.footer-logo {
+    width: 70px;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
 
 /* Hero Section */
 
