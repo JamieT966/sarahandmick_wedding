@@ -11,73 +11,75 @@
     </div>
 </div>
 
+<div class="bg-wedding">
 <!-- 3 ICONS -->
-<section class="container column-section my-5">
-    <div class="row">
-        <!-- Column 1 -->
-        <div class="col-md-4 text-center">
-            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Location_Green_rfehbc.png" alt="Description of Image 1" class="icon-img mb-3">
-            <h3>Four Seasons</h3>
-            <p>Carlingford, Co.Louth</p>
-        </div>
-        
-        <!-- Column 2 -->
-        <div class="col-md-4 text-center">
-            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Time_Green_bdyuiq.png" alt="Description of Image 2" class="icon-img mb-3">
-            <h3>29 March 2024</h3>
-            <p>14:00</p>
-        </div>
-        
-        <!-- Column 3 -->
-        <div class="col-md-4 text-center">
-            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Menu_Green_fjei91.png" alt="Description of Image 3" class="icon-img mb-3">
-            <h3>Menu</h3>
-            <p>To be decided</p>
+    <section class="container column-section my-5">
+        <div class="row">
+            <!-- Column 1 -->
+            <div class="col-md-4 text-center">
+                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Location_Green_rfehbc.png" alt="Description of Image 1" class="icon-img mb-3">
+                <h3>Four Seasons</h3>
+                <p>Carlingford, Co.Louth</p>
+            </div>
+            
+            <!-- Column 2 -->
+            <div class="col-md-4 text-center">
+                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Time_Green_bdyuiq.png" alt="Description of Image 2" class="icon-img mb-3">
+                <h3>29 March 2024</h3>
+                <p>14:00</p>
+            </div>
+            
+            <!-- Column 3 -->
+            <div class="col-md-4 text-center">
+                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Menu_Green_fjei91.png" alt="Description of Image 3" class="icon-img mb-3">
+                <h3>Menu</h3>
+                <p>To be decided</p>
+            </div>
         </div>
     </div>
+    </section>
+
+    <!-- RSVP Form -->
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+        {% load crispy_forms_tags %}
+
+        <form method="post" class="form-container p-3 mb-5 shadow" id="rsvp-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.name|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.will_attend|as_crispy_field }}
+            </div>
+            <div class="conditional-field">
+                <div class="line-seperator"></div>
+                <div class="form-group">
+                    {{ form.both_attending|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.not_attending_guest|as_crispy_field }}
+                </div>
+                <div class="line-seperator"></div>
+                <div class="form-group">
+                    {{ form.dietary_requirements|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.other_dietary_input|as_crispy_field }}
+                </div>
+                <div class="line-seperator"></div>
+                <div class="form-group">
+                    {{ form.attending_day2|as_crispy_field }}
+                </div>
+                <div class="line-seperator"></div>
+                <div class="form-group">
+                    {{ form.music_requests|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit" class="btn-green">Submit</button>
+        </form>
+    </div>
 </div>
-</section>
-
-<!-- RSVP Form -->
-<div class="container-fluid d-flex justify-content-center align-items-center">
-    {% load crispy_forms_tags %}
-
-    <form method="post" class="form-container p-3 mb-5 shadow" id="rsvp-form">
-        {% csrf_token %}
-        
-        <div class="form-group">
-            {{ form.name|as_crispy_field }}
-        </div>
-        <div class="form-group">
-            {{ form.will_attend|as_crispy_field }}
-        </div>
-        <div class="conditional-field">
-            <div class="line-seperator"></div>
-            <div class="form-group">
-                {{ form.both_attending|as_crispy_field }}
-            </div>
-            <div class="form-group">
-                {{ form.not_attending_guest|as_crispy_field }}
-            </div>
-            <div class="line-seperator"></div>
-            <div class="form-group">
-                {{ form.dietary_requirements|as_crispy_field }}
-            </div>
-            <div class="form-group">
-                {{ form.other_dietary_input|as_crispy_field }}
-            </div>
-            <div class="line-seperator"></div>
-            <div class="form-group">
-                {{ form.attending_day2|as_crispy_field }}
-            </div>
-            <div class="line-seperator"></div>
-            <div class="form-group">
-                {{ form.music_requests|as_crispy_field }}
-            </div>
-        </div>
-        <button type="submit" class="btn-green">Submit</button>
-    </form>
-
 <script>
 // HIDES OTHER QUESTIONS UNTIL YES IS SELECTED
  document.addEventListener('DOMContentLoaded', function() {
