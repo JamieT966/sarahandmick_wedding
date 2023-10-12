@@ -202,12 +202,6 @@ footer {
     }
 }
 
-@media (min-width: 997px) {
-    .form-container {
-        width: 950px;
-    }
-}
-
 .form-label {
     font-family: "Quattrocento Sans", sans-serif;
     margin-top: 15px;
