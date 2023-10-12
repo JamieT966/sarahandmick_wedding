@@ -89,9 +89,12 @@
 
 <script>
 // HIDES OTHER QUESTIONS UNTIL YES IS SELECTED
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const willAttendFields = document.querySelectorAll('input[name="will_attend"]');
     const conditionalContainers = document.querySelectorAll('.conditional-field');
+    const bothAttendingFields = document.querySelectorAll('input[name="both_attending"]');
+    const notAttendingGuestInput = document.querySelector('input[name="not_attending_guest"]');
+    const attendingDay2Field = document.querySelector('input[name="attending_day2"]');
 
     function toggleFields() {
         let selectedValue;
@@ -101,24 +104,50 @@
             }
         });
 
-        if (selectedValue === 'True') {  // 'True' is the value for 'Yes'
+        if (selectedValue === 'True') {
             conditionalContainers.forEach(container => {
-                container.style.display = 'block';  // Show the container
-                // Enable all input, select, and textarea elements inside the container
-                container.querySelectorAll('input, select, textarea').forEach(input => input.disabled = false);
+                container.style.display = 'block';
+                container.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.disabled = false;
+                    if (input.name === "both_attending" || input.name === "attending_day2") {
+                        input.required = true;
+                    }
+                });
             });
         } else {
             conditionalContainers.forEach(container => {
-                container.style.display = 'none';  // Hide the container
-                // Disable all input, select, and textarea elements inside the container
-                container.querySelectorAll('input, select, textarea').forEach(input => input.disabled = true);
+                container.style.display = 'none';
+                container.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.disabled = true;
+                    input.required = false;
+                });
             });
         }
     }
 
+    function checkBothAttending() {
+        let selectedValue;
+        bothAttendingFields.forEach(field => {
+            if (field.checked) {
+                selectedValue = field.value;
+            }
+        });
+
+        if (selectedValue === 'False') {  // 'False' is the value for 'No'
+            notAttendingGuestInput.setAttribute('required', 'required');
+        } else {
+            notAttendingGuestInput.removeAttribute('required');
+        }
+    }
+
     willAttendFields.forEach(field => field.addEventListener('change', toggleFields));
-    toggleFields();  // Call once to set initial state
+    bothAttendingFields.forEach(field => field.addEventListener('change', checkBothAttending));
+
+    toggleFields();
+    checkBothAttending();  // Call once to set initial state
 });
+
+
 </script>
 
 {% endblock %}

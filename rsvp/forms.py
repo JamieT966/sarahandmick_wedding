@@ -29,7 +29,7 @@ class RSVPForm(forms.ModelForm):
         required=True
     )
     both_attending = forms.ChoiceField(
-        label="Is everyone on the invite attending?",
+        label="Is everyone on the invite attending?*",
         choices=YES_NO_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -49,7 +49,7 @@ class RSVPForm(forms.ModelForm):
         required=False
     )
     attending_day2 = forms.ChoiceField(
-        label="Will you be attending day two?",
+        label="Will you be attending day two?*",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -75,16 +75,11 @@ class RSVPForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         will_attend = cleaned_data.get("will_attend")
-        
-        if self.is_valid():
-            guest_name = self.cleaned_data['name']
-            guest_name.delete()
 
-        if will_attend == 'True':  # 'True' is the string representation of True
-            pass
-        else:
-            # If "No" is selected, we can ignore or clear the other fields
-            for field in ['both_attending', 'dietary_requirements', 'attending_day2', 'music_requests']:
-                cleaned_data[field] = None
-            cleaned_data['dietary_requirements'] = []
+        if will_attend == "True":
+            if not cleaned_data.get('both_attending'):
+                self.add_error('both_attending', 'This field is required.')
+            if not cleaned_data.get('attending_day2'):
+                self.add_error('attending_day2', 'This field is required.')
+
         return cleaned_data
