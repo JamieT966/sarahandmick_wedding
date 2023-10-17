@@ -11,7 +11,6 @@
     </div>
 </div>
 
-<div class="bg-wedding">
 <!-- 3 ICONS -->
     <section class="container column-section my-5">
         <div class="row">
@@ -36,49 +35,163 @@
                 <p>6pm Four Seasons Hotel</p>
             </div>
         </div>
-    </div>
     </section>
 
-    <!-- RSVP Form -->
-    <div class="container-fluid d-flex justify-content-center align-items-center">
-        {% load crispy_forms_tags %}
+<!-- RSVP Form -->
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    {% load crispy_forms_tags %}
 
-        <form method="post" class="form-container p-3 mb-5 shadow" id="rsvp-form">
-            {% csrf_token %}
-            
+    <form method="post" class="form-container p-3 mb-5 shadow" id="rsvp-form">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form.name_1|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.will_attend_1|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4 d-flex align-items-center justify-content-evenly">
+                <button type="button" id="addGuest">Add Guest</button>
+                <button type="button" id="removeGuest">Remove Guest</button>
+            </div>
+        </div>
+
+        <div class="form-row guest" style="display: none;">
+            <div class="form-group col-md-4">
+                {{ form.name_2|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.will_attend_2|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4"></div> <!-- Empty div to replicate the button column -->
+        </div>
+
+        <div class="form-row guest" style="display: none;">
+            <div class="form-group col-md-4">
+                {{ form.name_3|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.will_attend_3|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4"></div> <!-- Empty div to replicate the button column -->
+        </div>
+
+        <div class="form-row guest" style="display: none;">
+            <div class="form-group col-md-4">
+                {{ form.name_4|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.will_attend_4|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4"></div> <!-- Empty div to replicate the button column -->
+        </div>
+
+        <div class="form-row guest" style="display: none;">
+            <div class="form-group col-md-4">
+                {{ form.name_5|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form.will_attend_5|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4"></div> <!-- Empty div to replicate the button column -->
+        </div>
+
+        <!-- GUEST 1 ADDITIONAL DETAILS -->
+        <div class="conditional-field-1" style="display: none;">
+            <div class="line-seperator"></div>
             <div class="form-group">
-                {{ form.name|as_crispy_field }}
+                {{ form.dietary_requirements_1|as_crispy_field }}
             </div>
+
             <div class="form-group">
-                {{ form.will_attend|as_crispy_field }}
+                {{ form.other_dietary_input_1|as_crispy_field }}
             </div>
-            <div class="conditional-field">
-                <div class="line-seperator"></div>
-                <div class="form-group">
-                    {{ form.both_attending|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.not_attending_guest|as_crispy_field }}
-                </div>
-                <div class="line-seperator"></div>
-                <div class="form-group">
-                    {{ form.dietary_requirements|as_crispy_field }}
-                </div>
-                <div class="form-group">
-                    {{ form.other_dietary_input|as_crispy_field }}
-                </div>
-                <div class="line-seperator"></div>
-                <div class="form-group">
-                    {{ form.attending_day2|as_crispy_field }}
-                </div>
-                <div class="line-seperator"></div>
-                <div class="form-group">
-                    {{ form.music_requests|as_crispy_field }}
-                </div>
+
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.attending_day2_1|as_crispy_field }}
             </div>
-            <button type="submit" class="btn-green">Submit</button>
-        </form>
-    </div>
+        </div>
+
+        <!-- GUEST 2 ADDITIONAL DETAILS -->
+        <div class="conditional-field-2" style="display: none;">
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.dietary_requirements_2|as_crispy_field }}
+            </div>
+
+            <div class="form-group">
+                {{ form.other_dietary_input_2|as_crispy_field }}
+            </div>
+
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.attending_day2_2|as_crispy_field }}
+            </div>
+        </div>
+
+        <!-- GUEST 3 ADDITIONAL DETAILS -->
+        <div class="conditional-field-3" style="display: none;">
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.dietary_requirements_3|as_crispy_field }}
+            </div>
+
+            <div class="form-group">
+                {{ form.other_dietary_input_3|as_crispy_field }}
+            </div>
+
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.attending_day2_3|as_crispy_field }}
+            </div>
+        </div>
+
+        <!-- GUEST 4 ADDITIONAL DETAILS -->
+        <div class="conditional-field-4" style="display: none;">
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.dietary_requirements_4|as_crispy_field }}
+            </div>
+
+            <div class="form-group">
+                {{ form.other_dietary_input_4|as_crispy_field }}
+            </div>
+
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.attending_day2_4|as_crispy_field }}
+            </div>
+        </div>
+
+        <!-- GUEST 5 ADDITIONAL DETAILS -->
+        <div class="conditional-field-5" style="display: none;">
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.dietary_requirements_5|as_crispy_field }}
+            </div>
+
+            <div class="form-group">
+                {{ form.other_dietary_input_5|as_crispy_field }}
+            </div>
+
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.attending_day2_5|as_crispy_field }}
+            </div>
+        </div>
+
+        <!-- NEED TO KEEP HIDDEN UNLESS ANYONE SAYS YES TO ATTENDING -->
+        <div id="music-requests-section" style="display: none;">
+            <div class="line-seperator"></div>
+            <div class="form-group">
+                {{ form.music_requests|as_crispy_field }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn-green">Submit</button>
+    </form>
 </div>
 
 <div class="container d-flex justify-content-center">
@@ -88,66 +201,103 @@
 </div>
 
 <script>
-// HIDES OTHER QUESTIONS UNTIL YES IS SELECTED
 document.addEventListener('DOMContentLoaded', function() {
-    const willAttendFields = document.querySelectorAll('input[name="will_attend"]');
-    const conditionalContainers = document.querySelectorAll('.conditional-field');
-    const bothAttendingFields = document.querySelectorAll('input[name="both_attending"]');
-    const notAttendingGuestInput = document.querySelector('input[name="not_attending_guest"]');
-    const attendingDay2Field = document.querySelector('input[name="attending_day2"]');
-
-    function toggleFields() {
-        let selectedValue;
-        willAttendFields.forEach(field => {
-            if (field.checked) {
-                selectedValue = field.value;
-            }
+    // Function to handle showing and hiding additional details based on attendance
+    function handleAttendanceChange(attendanceInputs, detailsElement, guestNumber) {
+        attendanceInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                if (input.value === 'True' && input.checked) {
+                    detailsElement.style.display = 'block';
+                } else {
+                    detailsElement.style.display = 'none';
+                }
+            });
         });
 
-        if (selectedValue === 'True') {
-            conditionalContainers.forEach(container => {
-                container.style.display = 'block';
-                container.querySelectorAll('input, select, textarea').forEach(input => {
-                    input.disabled = false;
-                    if (input.name === "both_attending" || input.name === "attending_day2") {
-                        input.required = true;
-                    }
-                });
-            });
-        } else {
-            conditionalContainers.forEach(container => {
-                container.style.display = 'none';
-                container.querySelectorAll('input, select, textarea').forEach(input => {
-                    input.disabled = true;
-                    input.required = false;
-                });
+        // Remove the 'required' attribute if the section is not displayed.
+        if (detailsElement.style.display === 'none') {
+            const willAttendInputs = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
+            willAttendInputs.forEach(input => {
+                input.removeAttribute('required');
             });
         }
     }
 
-    function checkBothAttending() {
-        let selectedValue;
-        bothAttendingFields.forEach(field => {
-            if (field.checked) {
-                selectedValue = field.value;
-            }
-        });
+    // Set up for each guest's attendance and details
+    function setupGuestAttendance(guestNumber) {
+        const willAttend = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
+        const additionalDetails = document.querySelector(`.conditional-field-${guestNumber}`);
 
-        if (selectedValue === 'False') {  // 'False' is the value for 'No'
-            notAttendingGuestInput.setAttribute('required', 'required');
-        } else {
-            notAttendingGuestInput.removeAttribute('required');
+        if (willAttend.length > 0) {
+            handleAttendanceChange(willAttend, additionalDetails, guestNumber);
         }
     }
 
-    willAttendFields.forEach(field => field.addEventListener('change', toggleFields));
-    bothAttendingFields.forEach(field => field.addEventListener('change', checkBothAttending));
+    // Initialize each guest's setup
+    for (let i = 1; i <= 5; i++) {
+        setupGuestAttendance(i);
+    }
 
-    toggleFields();
-    checkBothAttending();  // Call once to set initial state
+    // Code for add/remove guest functionality
+    const guestSections = document.querySelectorAll('.guest');
+    const addGuestButton = document.getElementById('addGuest');
+    const removeGuestButton = document.getElementById('removeGuest');
+    let guestCount = 0; // Start with 0 because no additional guests are displayed initially
+
+    addGuestButton.addEventListener('click', function() {
+        if (guestCount < guestSections.length) {
+            guestSections[guestCount].style.display = 'flex';
+            // Find the inputs within this section and make them required.
+            const inputs = guestSections[guestCount].querySelectorAll('input');
+            inputs.forEach(input => {
+                input.setAttribute('required', '');
+            });
+            guestCount++;
+        }
+    });
+
+    removeGuestButton.addEventListener('click', function() {
+        if (guestCount > 0) {
+            guestCount--;
+            guestSections[guestCount].style.display = 'none';
+            // Find the inputs within this section and remove the 'required' attribute.
+            const inputs = guestSections[guestCount].querySelectorAll('input');
+            inputs.forEach(input => {
+                input.removeAttribute('required');
+            });
+        }
+    });
+
+    // Function to check if any guest is attending and show the music requests section if so
+    function checkAnyAttendance() {
+        const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
+        let anyoneAttending = false;
+
+        willAttendRadios.forEach(function(radio) {
+            if (radio.checked && radio.value === 'True') {
+                anyoneAttending = true;
+            }
+        });
+
+        const musicRequestsSection = document.getElementById('music-requests-section');
+        if (anyoneAttending) {
+            musicRequestsSection.style.display = 'block';
+        } else {
+            musicRequestsSection.style.display = 'none';
+        }
+    }
+
+    // Call checkAnyAttendance function whenever any 'will attend' radio changes
+    const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
+    willAttendRadios.forEach(function(radio) {
+        radio.addEventListener('change', checkAnyAttendance);
+    });
+
+    // Initial check on page load
+    checkAnyAttendance();
 });
 
-
 </script>
+    
 
 {% endblock %}
