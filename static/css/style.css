@@ -220,7 +220,7 @@ footer {
 }
 
 .form-row .form-group {
-    flex: 1;
+    /* flex: 1; */
     margin-right: 10px;
 }
 
@@ -232,11 +232,18 @@ footer {
     justify-content: space-between;
 }
 
+.button-column {
+    justify-content: center; /* Aligns the content to the center */
+    max-width: fit-content;  /* Makes the column's width as wide as the content */
+    flex-grow: 0;            /* Prevents the column from growing */
+    flex-shrink: 0;          /* Prevents the column from shrinking */
+}
+
 /* Form submitted page */
 .form-submitted {
-        height: 100vh;
-        text-align: center;
-        font-size: 1.2rem;
+    height: 100vh;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 .form-submitted-bg {
@@ -256,3 +263,55 @@ footer {
     pointer-events: none; /* Ensures the overlay doesn't interfere with any interactions */
     z-index: 1; /* Ensures the overlay is above the background image */
 }
+
+/* Add and Remove Guest Buttons */
+
+.btn {
+    border: 1px solid white !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease !important;
+    padding: 10px !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .add-guest {
+    background-color: var(--je_light_green) !important;
+  }
+  
+  .remove-guest {
+    background-color: #E06469 !important;
+  }
+  
+  .btn i {
+    display: none;
+  }
+  
+  .btn span {
+    display: inline;
+  }
+  
+  .btn:hover, .btn:focus {
+    filter: brightness(0.9);
+  }
+  /* Adjustments for smaller screens */
+  @media (max-width: 770px) {
+    .btn {
+      width: 40px; /* or any specific size for square shape */
+      height: 40px;
+      padding: 10px !important;
+      border-radius: 50%; /* Making the button circular */
+      justify-content: center;
+    }
+  
+    .btn i {
+      display: inline; /* Now, the icon becomes visible */
+    }
+  
+    .btn span {
+      display: none; /* The text is hidden */
+    }
+  }
+  

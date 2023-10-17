@@ -51,9 +51,9 @@
             <div class="form-group col-md-4">
                 {{ form.will_attend_1|as_crispy_field }}
             </div>
-            <div class="form-group col-md-4 d-flex align-items-center justify-content-evenly">
-                <button type="button" id="addGuest">Add Guest</button>
-                <button type="button" id="removeGuest">Remove Guest</button>
+            <div class="form-group button-column col-md-4 d-flex align-items-center justify-content-evenly">
+                <button class="btn add-guest" id="addGuest"><i class="fas fa-plus"></i><span>Add Guest</span></button>
+                <button class="btn remove-guest" id="removeGuest"><i class="fas fa-minus"></i><span>Remove Guest</span></button>
             </div>
         </div>
 

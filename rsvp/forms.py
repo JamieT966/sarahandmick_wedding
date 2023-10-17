@@ -35,7 +35,7 @@ class RSVPForm(forms.ModelForm):
     will_attend_1 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
-        label="Are you attending?"
+        label="RSVP?"
     )
 
     dietary_requirements_1 = forms.ModelMultipleChoiceField(
@@ -67,7 +67,7 @@ class RSVPForm(forms.ModelForm):
     will_attend_2 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
-        label="Are you attending?"
+        label="RSVP?"
     )
 
     dietary_requirements_2 = forms.ModelMultipleChoiceField(
@@ -99,7 +99,7 @@ class RSVPForm(forms.ModelForm):
     will_attend_3 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
-        label="Are you attending?"
+        label="RSVP?"
     )
 
     dietary_requirements_3 = forms.ModelMultipleChoiceField(
@@ -131,7 +131,7 @@ class RSVPForm(forms.ModelForm):
     will_attend_4 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
-        label="Are you attending?"
+        label="RSVP?"
     )
 
     dietary_requirements_4 = forms.ModelMultipleChoiceField(
@@ -163,7 +163,7 @@ class RSVPForm(forms.ModelForm):
     will_attend_5 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
-        label="Are you attending?"
+        label="RSVP?"
     )
 
     dietary_requirements_5 = forms.ModelMultipleChoiceField(
