@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import dj_database_url
 from pathlib import Path
 import os
+if os.path.isfile('.env'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$!u1%iw-56l#ka&&-00d=xe&erk2o1lqukkip&*v8hp%m^6ao3'
+# SECRET_KEY = 'django-insecure-$!u1%iw-56l#ka&&-00d=xe&erk2o1lqukkip&*v8hp%m^6ao3'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,7 +90,11 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse("postgres://weddingdb_l911_user:q1YIWsSpKKMmciR42jp0yaQYzKENzudJ@dpg-cki5ejsldqrs73fiq0t0-a.oregon-postgres.render.com/weddingdb_l911")
+# DATABASES['default'] = dj_database_url.parse("postgres://weddingdb_l911_user:q1YIWsSpKKMmciR42jp0yaQYzKENzudJ@dpg-cki5ejsldqrs73fiq0t0-a.oregon-postgres.render.com/weddingdb_l911")
+
+DATABASES = {
+   'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
