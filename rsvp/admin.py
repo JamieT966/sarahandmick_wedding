@@ -164,6 +164,6 @@ class RSVPAdmin(admin.ModelAdmin):
     search_fields = ('name_1__name', 'name_2__name', 'name_3__name', 'name_4__name', 'name_5__name')
     ordering = ('-id',)
 
-    actions = [export_to_csv]
+    # actions = [export_to_csv]
 
 admin.site.register(DietaryRequirement)
