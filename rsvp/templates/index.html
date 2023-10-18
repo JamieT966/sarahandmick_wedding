@@ -208,19 +208,21 @@ document.addEventListener('DOMContentLoaded', function() {
             input.addEventListener('change', function() {
                 if (input.value === 'True' && input.checked) {
                     detailsElement.style.display = 'block';
+                    // Here, we set the 'attending_day2' field as required when the details section is visible
+                    const attendingDay2Field = detailsElement.querySelector(`input[name="attending_day2_${guestNumber}"]`);
+                    if (attendingDay2Field) {
+                        attendingDay2Field.setAttribute('required', '');
+                    }
+                    // Note: Add similar lines here to set other fields as 'required' if necessary
                 } else {
                     detailsElement.style.display = 'none';
+                    // Remove the 'required' attribute if the section is not displayed
+                    detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
+                        field.removeAttribute('required');
+                    });
                 }
             });
         });
-
-        // Remove the 'required' attribute if the section is not displayed.
-        if (detailsElement.style.display === 'none') {
-            const willAttendInputs = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
-            willAttendInputs.forEach(input => {
-                input.removeAttribute('required');
-            });
-        }
     }
 
     // Set up for each guest's attendance and details
@@ -244,12 +246,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const removeGuestButton = document.getElementById('removeGuest');
     let guestCount = 0; // Start with 0 because no additional guests are displayed initially
 
-    addGuestButton.addEventListener('click', function() {
+    addGuestButton.addEventListener('click', function(event) {
+        event.preventDefault();  // Prevent form submission on button click
         if (guestCount < guestSections.length) {
-            guestSections[guestCount].style.display = 'flex';
-            // Find the inputs within this section and make them required.
-            const inputs = guestSections[guestCount].querySelectorAll('input');
-            inputs.forEach(input => {
+            const currentSection = guestSections[guestCount];
+            currentSection.style.display = 'flex';
+            // Make the fields inside the shown section required
+            currentSection.querySelectorAll('input').forEach(input => {
                 input.setAttribute('required', '');
             });
             guestCount++;
@@ -257,16 +260,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     removeGuestButton.addEventListener('click', function() {
-        if (guestCount > 0) {
-            guestCount--;
-            guestSections[guestCount].style.display = 'none';
-            // Find the inputs within this section and remove the 'required' attribute.
-            const inputs = guestSections[guestCount].querySelectorAll('input');
-            inputs.forEach(input => {
-                input.removeAttribute('required');
-            });
-        }
-    });
+    if (guestCount > 0) {
+        guestCount--;
+
+        // Find the 'will-attend' radio buttons within this guest section.
+        const willAttendRadios = guestSections[guestCount].querySelectorAll('input[type=radio][name^="will_attend_"]');
+        
+        // Reset 'will-attend' radio buttons and trigger a change event to handle conditional fields.
+        willAttendRadios.forEach(function(radio) {
+            radio.checked = false; // Reset radio buttons
+            radio.dispatchEvent(new Event('change')); // Trigger change event
+        });
+
+        // Hide the guest section.
+        guestSections[guestCount].style.display = 'none';
+
+        // Find the inputs within this section and remove the 'required' attribute.
+        const inputs = guestSections[guestCount].querySelectorAll('input');
+        inputs.forEach(input => {
+            input.removeAttribute('required');
+        });
+    }
+});
 
     // Function to check if any guest is attending and show the music requests section if so
     function checkAnyAttendance() {
