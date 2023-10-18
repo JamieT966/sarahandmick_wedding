@@ -5,42 +5,42 @@ from django.http import HttpResponse
 from django.utils.encoding import smart_str
 
 
-def export_to_csv(modeladmin, request, queryset):
-    opts = modeladmin.model._meta
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename={}.csv'.format(opts.verbose_name)
-    writer = csv.writer(response)
+# def export_to_csv(modeladmin, request, queryset):
+#     opts = modeladmin.model._meta
+#     response = HttpResponse(content_type='text/csv')
+#     response['Content-Disposition'] = 'attachment; filename={}.csv'.format(opts.verbose_name)
+#     writer = csv.writer(response)
 
-    # Custom headers that define the order and titles of the CSV columns
-    headers = [
-        'Guest 1 Name', 'Will Attend (Guest 1)', 'Dietary Requirements (Guest 1)', 'Other Dietary Needs (Guest 1)', 'Attending Day 2 (Guest 1)',
-        'Guest 2 Name', 'Will Attend (Guest 2)', 'Dietary Requirements (Guest 2)', 'Other Dietary Needs (Guest 2)', 'Attending Day 2 (Guest 2)',
-        'Guest 3 Name', 'Will Attend (Guest 3)', 'Dietary Requirements (Guest 3)', 'Other Dietary Needs (Guest 3)', 'Attending Day 2 (Guest 3)',
-        'Guest 4 Name', 'Will Attend (Guest 4)', 'Dietary Requirements (Guest 4)', 'Other Dietary Needs (Guest 4)', 'Attending Day 2 (Guest 4)',
-        'Guest 5 Name', 'Will Attend (Guest 5)', 'Dietary Requirements (Guest 5)', 'Other Dietary Needs (Guest 5)', 'Attending Day 2 (Guest 5)',
-        'Music Requests'
-    ]
-    writer.writerow(headers)
+#     # Custom headers that define the order and titles of the CSV columns
+#     headers = [
+#         'Guest 1 Name', 'Will Attend (Guest 1)', 'Dietary Requirements (Guest 1)', 'Other Dietary Needs (Guest 1)', 'Attending Day 2 (Guest 1)',
+#         'Guest 2 Name', 'Will Attend (Guest 2)', 'Dietary Requirements (Guest 2)', 'Other Dietary Needs (Guest 2)', 'Attending Day 2 (Guest 2)',
+#         'Guest 3 Name', 'Will Attend (Guest 3)', 'Dietary Requirements (Guest 3)', 'Other Dietary Needs (Guest 3)', 'Attending Day 2 (Guest 3)',
+#         'Guest 4 Name', 'Will Attend (Guest 4)', 'Dietary Requirements (Guest 4)', 'Other Dietary Needs (Guest 4)', 'Attending Day 2 (Guest 4)',
+#         'Guest 5 Name', 'Will Attend (Guest 5)', 'Dietary Requirements (Guest 5)', 'Other Dietary Needs (Guest 5)', 'Attending Day 2 (Guest 5)',
+#         'Music Requests'
+#     ]
+#     writer.writerow(headers)
 
-    for obj in queryset:
-        row = []
-        for i in range(1, 6):  # Assuming 5 guests
-            guest_data = [
-                getattr(obj, f'name_{i}', ''),  # Name
-                getattr(obj, f'will_attend_{i}', ''),  # Attendance
-                ", ".join([dr.name for dr in getattr(obj, f'dietary_requirements_{i}').all()]),  # Dietary Requirements
-                getattr(obj, f'other_dietary_input_{i}', ''),  # Other Dietary Needs
-                getattr(obj, f'attending_day2_{i}', ''),  # Attending Day 2
-            ]
-            row.extend(guest_data)
+#     for obj in queryset:
+#         row = []
+#         for i in range(1, 6):  # Assuming 5 guests
+#             guest_data = [
+#                 getattr(obj, f'name_{i}', ''),  # Name
+#                 getattr(obj, f'will_attend_{i}', ''),  # Attendance
+#                 ", ".join([dr.name for dr in getattr(obj, f'dietary_requirements_{i}').all()]),  # Dietary Requirements
+#                 getattr(obj, f'other_dietary_input_{i}', ''),  # Other Dietary Needs
+#                 getattr(obj, f'attending_day2_{i}', ''),  # Attending Day 2
+#             ]
+#             row.extend(guest_data)
 
-        row.append(getattr(obj, 'music_requests', ''))  # Music requests or other fields that are not guest-specific.
+#         row.append(getattr(obj, 'music_requests', ''))  # Music requests or other fields that are not guest-specific.
 
-        writer.writerow(row)
+#         writer.writerow(row)
 
-    return response
+#     return response
 
-export_to_csv.short_description = 'Export to CSV'
+# export_to_csv.short_description = 'Export to CSV'
 
 
 @admin.register(RSVP)
