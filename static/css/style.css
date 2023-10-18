@@ -233,10 +233,14 @@ footer {
 }
 
 .button-column {
-    justify-content: center; /* Aligns the content to the center */
-    max-width: fit-content;  /* Makes the column's width as wide as the content */
-    flex-grow: 0;            /* Prevents the column from growing */
-    flex-shrink: 0;          /* Prevents the column from shrinking */
+    justify-content: center;
+    max-width: fit-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.rsvp-col {
+    margin-left: 10px;
 }
 
 /* Form submitted page */
@@ -312,6 +316,10 @@ footer {
   
     .btn span {
       display: none; /* The text is hidden */
+    }
+
+    .guest {
+        margin-right: 85px;
     }
   }
   
