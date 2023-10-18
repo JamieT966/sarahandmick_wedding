@@ -28,7 +28,7 @@ class RSVPForm(forms.ModelForm):
     # GUEST 1
     name_1 = forms.CharField(
         label="Guest 1 Name",
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Guest 1'}),
         required=True
     )
     
@@ -60,7 +60,7 @@ class RSVPForm(forms.ModelForm):
     # GUEST 2
     name_2 = forms.CharField(
         label="Guest 2 Name (If Applicable)*",
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Guest 2'}),
         required=False
     )
     
@@ -92,7 +92,7 @@ class RSVPForm(forms.ModelForm):
     # GUEST 3
     name_3 = forms.CharField(
         label="Guest 3 Name (If Applicable)*",
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Guest 3'}),
         required=False
     )
     
@@ -124,7 +124,7 @@ class RSVPForm(forms.ModelForm):
     # GUEST 4
     name_4 = forms.CharField(
         label="Guest 4 Name (If Applicable)*",
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Guest 4'}),
         required=False
     )
     
@@ -156,7 +156,7 @@ class RSVPForm(forms.ModelForm):
     # GUEST 5
     name_5 = forms.CharField(
         label="Guest 5 Name (If Applicable)*",
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Guest 5'}),
         required=False
     )
     
@@ -188,7 +188,7 @@ class RSVPForm(forms.ModelForm):
     # MUSIC REQUESTS FOR ALL ON INVITE
     music_requests = forms.CharField(
         label="Is there any music you want to hear on the night?",
-        widget=forms.TextInput(),
+        widget=forms.TextInput(attrs={'placeholder': 'Music Requests'}),
         required=False
     )
 
