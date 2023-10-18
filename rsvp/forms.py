@@ -39,7 +39,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_1 = forms.ModelMultipleChoiceField(
-        label = "Guest 1 Dietary Requirements?",
+        label = "Guest 1: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -51,7 +51,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     attending_day2_1 = forms.ChoiceField(
-        label= "Guest 1 Day Two Attendance?",
+        label= "Guest 1: Day Two Attendance?",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -71,7 +71,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_2 = forms.ModelMultipleChoiceField(
-        label = "Guest 2 Dietary Requirements?",
+        label = "Guest 2: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -83,7 +83,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     attending_day2_2 = forms.ChoiceField(
-        label="Guest 2 Day Two Attendance?",
+        label="Guest 2: Day Two Attendance?",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -103,7 +103,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_3 = forms.ModelMultipleChoiceField(
-        label = "Guest 3 Dietary Requirements?",
+        label = "Guest 3: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -115,7 +115,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     attending_day2_3 = forms.ChoiceField(
-        label="Guest 3 Day Two Attendance?",
+        label="Guest 3: Day Two Attendance?",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -135,7 +135,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_4 = forms.ModelMultipleChoiceField(
-        label = "Guest 4 Dietary Requirements?",
+        label = "Guest 4: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -147,7 +147,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     attending_day2_4 = forms.ChoiceField(
-        label="Guest 4 Day Two Attendance?",
+        label="Guest 4: Day Two Attendance?",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -167,7 +167,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_5 = forms.ModelMultipleChoiceField(
-        label = "Guest 5 Dietary Requirements?",
+        label = "Guest 5: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
@@ -179,7 +179,7 @@ class RSVPForm(forms.ModelForm):
     )
 
     attending_day2_5 = forms.ChoiceField(
-        label="Guest 5 Day Two Attendance?",
+        label="Guest 5: Day Two Attendance?",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
