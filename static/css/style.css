@@ -208,6 +208,10 @@ footer {
     width: 120%;
 }
 
+.other-labels label {
+    width: 100%;
+}
+
 .line-seperator {
     width: 100%;
     border-bottom: 1px solid white;
@@ -323,4 +327,3 @@ footer {
         margin-right: 85px;
     }
   }
-  
