@@ -185,6 +185,10 @@ footer {
 
 /* Form Styling */
 
+.top-of-form {
+    text-align: center;
+}
+
 .no-label + label {
     display: none;
 }
