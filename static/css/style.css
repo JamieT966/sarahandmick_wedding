@@ -257,6 +257,10 @@ input::placeholder {
     color: #909090 !important;
 }
 
+.guest-fields .form-label {
+    font-weight: bolder;
+}
+
 /* Form submitted page */
 .form-submitted {
     height: 100vh;
