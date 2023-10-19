@@ -193,6 +193,13 @@ footer {
     display: none;
 }
 
+#dietary_label_1, #dietary_label_2, #dietary_label_3,
+#dietary_label_4, #dietary_label_5, #day2_label_1, 
+#day2_label_2, #day2_label_3, #day2_label_4, #day2_label_5
+{
+    padding: 10px 0;
+}
+
 .form-container {
     width: 500px;
     border-radius: 5px;
@@ -220,7 +227,11 @@ footer {
     width: 100%;
     border-bottom: 1px solid white;
     margin: 0 auto;
-    padding: 4px 0;
+    padding: 5px 0;
+}
+
+.first-seperator {
+    margin: 10px auto;
 }
 
 .form-row {
@@ -337,6 +348,6 @@ input::placeholder {
     }
 
     .guest {
-        margin-right: 85px;
+        margin-right: 95px;
     }
   }

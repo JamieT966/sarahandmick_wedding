@@ -45,11 +45,11 @@
 
     <form method="post" class="form-container p-3 mb-5 shadow" id="rsvp-form">
 
-        <div class="top-of-form">
+        <div class="top-of-form pt-2">
             <h2>Wedding RSVP</h2>
             <p>Please fill out only names on invitation. <br>
             <small>Please use the buttons to add & remove names.</small></p>
-            <div class="line-seperator"></div>
+            <div class="line-seperator first-seperator"></div>
         </div>
 
         {% csrf_token %}
@@ -111,15 +111,17 @@
         <div class="conditional-field-1 guest-fields" style="display: none;">
             <div class="line-seperator"></div>
             <div class="form-group other-labels">
+                <label id="dietary_label_1">%GUEST_NAME% do you have any dietary requirements?</label>
                 {{ form.dietary_requirements_1|as_crispy_field }}
             </div>
-
+            
             <div class="form-group other-labels">
                 {{ form.other_dietary_input_1|as_crispy_field }}
             </div>
-
+            
             <!-- <div class="line-seperator"></div> -->
             <div class="form-group other-labels">
+                <label id="day2_label_1">%GUEST_NAME%?, are you attending day 2? </label>
                 {{ form.attending_day2_1|as_crispy_field }}
             </div>
         </div>
@@ -128,6 +130,7 @@
         <div class="conditional-field-2 guest-fields" style="display: none;">
             <div class="line-seperator"></div>
             <div class="form-group other-labels">
+                <label id="dietary_label_2">Does %GUEST_NAME% have any dietary requirements?</label>
                 {{ form.dietary_requirements_2|as_crispy_field }}
             </div>
 
@@ -137,6 +140,7 @@
 
             <!-- <div class="line-seperator"></div> -->
             <div class="form-group other-labels">
+                <label id="day2_label_2">Is %GUEST_NAME%? attending day 2?</label>
                 {{ form.attending_day2_2|as_crispy_field }}
             </div>
         </div>
@@ -145,6 +149,7 @@
         <div class="conditional-field-3 guest-fields" style="display: none;">
             <div class="line-seperator"></div>
             <div class="form-group other-labels">
+                <label id="dietary_label_3">Does %GUEST_NAME% have any dietary requirements?</label>
                 {{ form.dietary_requirements_3|as_crispy_field }}
             </div>
 
@@ -154,6 +159,7 @@
 
             <!-- <div class="line-seperator"></div> -->
             <div class="form-group other-labels">
+                <label id="day2_label_3">Is %GUEST_NAME%? attending day 2?</label>
                 {{ form.attending_day2_3|as_crispy_field }}
             </div>
         </div>
@@ -162,6 +168,7 @@
         <div class="conditional-field-4 guest-fields" style="display: none;">
             <div class="line-seperator"></div>
             <div class="form-group other-labels">
+                <label id="dietary_label_4">Does %GUEST_NAME% have any dietary requirements?</label>
                 {{ form.dietary_requirements_4|as_crispy_field }}
             </div>
 
@@ -171,6 +178,7 @@
 
             <!-- <div class="line-seperator"></div> -->
             <div class="form-group other-labels">
+                <label id="day2_label_4">Is %GUEST_NAME%? attending day 2?</label>
                 {{ form.attending_day2_4|as_crispy_field }}
             </div>
         </div>
@@ -179,6 +187,7 @@
         <div class="conditional-field-5 guest-fields" style="display: none;">
             <div class="line-seperator"></div>
             <div class="form-group other-labels">
+                <label id="dietary_label_5">Does %GUEST_NAME% have any dietary requirements?</label>
                 {{ form.dietary_requirements_5|as_crispy_field }}
             </div>
 
@@ -188,6 +197,7 @@
 
             <!-- <div class="line-seperator"></div> -->
             <div class="form-group other-labels">
+                <label id="day2_label_5">Is %GUEST_NAME% attending day 2?</label>
                 {{ form.attending_day2_5|as_crispy_field }}
             </div>
         </div>
@@ -218,15 +228,12 @@ document.addEventListener('DOMContentLoaded', function() {
             input.addEventListener('change', function() {
                 if (input.value === 'True' && input.checked) {
                     detailsElement.style.display = 'block';
-                    // Here, we set the 'attending_day2' field as required when the details section is visible
                     const attendingDay2Field = detailsElement.querySelector(`input[name="attending_day2_${guestNumber}"]`);
                     if (attendingDay2Field) {
                         attendingDay2Field.setAttribute('required', '');
                     }
-                    // Note: Add similar lines here to set other fields as 'required' if necessary
                 } else {
                     detailsElement.style.display = 'none';
-                    // Remove the 'required' attribute if the section is not displayed
                     detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
                         field.removeAttribute('required');
                     });
@@ -235,66 +242,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Set up for each guest's attendance and details
+    // Setup attendance handling for each guest
     function setupGuestAttendance(guestNumber) {
         const willAttend = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
         const additionalDetails = document.querySelector(`.conditional-field-${guestNumber}`);
 
-        if (willAttend.length > 0) {
+        if (willAttend.length > 0 && additionalDetails) {
             handleAttendanceChange(willAttend, additionalDetails, guestNumber);
         }
     }
 
-    // Initialize each guest's setup
-    for (let i = 1; i <= 5; i++) {
-        setupGuestAttendance(i);
-    }
+    // Function to update labels with the guest's first name or a default name
+    function updateGuestLabels(guestNumber, inputName = '') {
+        const day2Label = document.querySelector(`#day2_label_${guestNumber}`);
+        const dietaryLabel = document.querySelector(`#dietary_label_${guestNumber}`);
 
-    // Code for add/remove guest functionality
-    const guestSections = document.querySelectorAll('.guest');
-    const addGuestButton = document.getElementById('addGuest');
-    const removeGuestButton = document.getElementById('removeGuest');
-    let guestCount = 0; // Start with 0 because no additional guests are displayed initially
+        const nameParts = inputName.trim().split(' ');
+        const firstName = nameParts[0] || `Guest ${guestNumber}`;
+        const boldFirstName = `<strong>${firstName}</strong>`;
 
-    addGuestButton.addEventListener('click', function(event) {
-        event.preventDefault();  // Prevent form submission on button click
-        if (guestCount < guestSections.length) {
-            const currentSection = guestSections[guestCount];
-            currentSection.style.display = 'flex';
-            // Make the fields inside the shown section required
-            currentSection.querySelectorAll('input').forEach(input => {
-                input.setAttribute('required', '');
-            });
-            guestCount++;
+        if (day2Label) {
+            day2Label.innerHTML = `${boldFirstName}, are you attending day 2?`;
         }
-    });
 
-    removeGuestButton.addEventListener('click', function() {
-    if (guestCount > 0) {
-        guestCount--;
-
-        // Find the 'will-attend' radio buttons within this guest section.
-        const willAttendRadios = guestSections[guestCount].querySelectorAll('input[type=radio][name^="will_attend_"]');
-        
-        // Reset 'will-attend' radio buttons and trigger a change event to handle conditional fields.
-        willAttendRadios.forEach(function(radio) {
-            radio.checked = false; // Reset radio buttons
-            radio.dispatchEvent(new Event('change')); // Trigger change event
-        });
-
-        // Hide the guest section.
-        guestSections[guestCount].style.display = 'none';
-
-        // Find the inputs within this section and remove the 'required' attribute.
-        const inputs = guestSections[guestCount].querySelectorAll('input');
-        inputs.forEach(input => {
-            input.removeAttribute('required');
-        });
+        if (dietaryLabel) {
+            dietaryLabel.innerHTML = `${boldFirstName}, do you have any dietary requirements?`;
+        }
     }
-});
 
-    // Function to check if any guest is attending and show the music requests section if so
-    function checkAnyAttendance() {
+    // Setup guest name change handling for each guest
+    function setupGuestNameChange(guestNumber) {
+        const nameInput = document.querySelector(`input[name="name_${guestNumber}"]`);
+
+        if (nameInput) {
+            nameInput.addEventListener('input', function() {
+                updateGuestLabels(guestNumber, nameInput.value);
+            });
+        }
+        updateGuestLabels(guestNumber); // Set default label on initial load
+    }
+
+    // This function checks if any guest has selected 'Yes' for attending and shows/hides the music request section.
+    function updateMusicRequests() {
         const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
         let anyoneAttending = false;
 
@@ -312,15 +301,107 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Call checkAnyAttendance function whenever any 'will attend' radio changes
+    // Initialize all the guest-related listeners
+    for (let i = 1; i <= 5; i++) {
+        setupGuestAttendance(i);
+        setupGuestNameChange(i);
+    }
+
+    // Check attendance on initial load
+    updateMusicRequests();
+
+    // Attach the event listeners to the 'will attend' radio buttons.
     const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
     willAttendRadios.forEach(function(radio) {
-        radio.addEventListener('change', checkAnyAttendance);
+        radio.addEventListener('change', updateMusicRequests);
     });
 
-    // Initial check on page load
-    checkAnyAttendance();
+    // Handling for adding/removing guests
+    const guestSections = document.querySelectorAll('.guest');
+    const addGuestButton = document.getElementById('addGuest');
+    const removeGuestButton = document.getElementById('removeGuest');
+    let guestCount = guestSections.length; // assuming all guests are visible at the start
+
+    function getCurrentGuestCount() {
+        let count = 0;
+        guestSections.forEach(section => {
+            if (section.style.display !== 'none') {
+                count++;
+            }
+        });
+        return count;
+    }
+
+    function getNextHiddenGuestSection() {
+        return Array.from(guestSections).find(section => section.style.display === 'none');
+    }
+
+    removeGuestButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    const currentGuestCount = getCurrentGuestCount();
+
+    if (currentGuestCount > 0) {
+        const lastVisibleSection = guestSections[currentGuestCount - 1];
+
+        // Reset the 'will attend' status and trigger change events to update dependent UI
+        const willAttendRadios = lastVisibleSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
+        willAttendRadios.forEach(function(radio) {
+            if (radio.checked) {
+                radio.checked = false;
+                // Triggering change event to ensure all dependent UI updates occur
+                radio.dispatchEvent(new Event('change', { 'bubbles': true }));
+            }
+        });
+
+        // Hide the additional details for this guest since they're being removed
+        const additionalDetails = lastVisibleSection.querySelector('.conditional-fields');
+        if (additionalDetails) {
+            additionalDetails.style.display = 'none'; // This ensures it starts hidden if they're re-added
+            additionalDetails.querySelectorAll('input, select, textarea').forEach(field => {
+                field.value = ''; // Clear any input they had entered
+                field.removeAttribute('required'); // They're no longer attending, so these fields aren't required
+            });
+        }
+
+        lastVisibleSection.style.display = 'none'; // Hide the guest section
+
+        // After removing a guest, update the music request section if needed
+        updateMusicRequests();
+    }
 });
+
+// Handling for adding guests
+addGuestButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    const nextHiddenSection = getNextHiddenGuestSection();
+
+    if (nextHiddenSection) {
+        nextHiddenSection.style.display = 'flex';
+        nextHiddenSection.querySelectorAll('input').forEach(input => {
+            input.setAttribute('required', '');
+        });
+
+        // Get the guest number for this guest section. This assumes that your guest sections have an attribute like 'data-guest-number' that stores their number.
+        const guestNumber = nextHiddenSection.getAttribute('data-guest-number');
+
+        // Set up the attendance and name change handling again for this guest, as they've been re-added
+        setupGuestAttendance(guestNumber);
+        setupGuestNameChange(guestNumber);
+
+        // Reset their RSVP radio buttons to ensure they're not still marked as attending
+        const willAttendRadios = nextHiddenSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
+        willAttendRadios.forEach(radio => {
+            if (radio.value === 'True') { // This is the 'Yes' option
+                radio.checked = false; // Ensure it's not checked
+            }
+        });
+
+        updateMusicRequests(); // Check if we need to show the music requests now that we've added a guest
+    }
+});
+
+});
+
 
 </script>
     

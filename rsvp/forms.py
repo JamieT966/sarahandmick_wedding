@@ -13,6 +13,16 @@ class RSVPForm(forms.ModelForm):
         self.fields['will_attend_3'].required = False
         self.fields['will_attend_4'].required = False
         self.fields['will_attend_5'].required = False
+        self.fields['dietary_requirements_1'].label = ""
+        self.fields['dietary_requirements_2'].label = ""
+        self.fields['dietary_requirements_3'].label = ""
+        self.fields['dietary_requirements_4'].label = ""
+        self.fields['dietary_requirements_5'].label = ""
+        self.fields['attending_day2_1'].label = ""
+        self.fields['attending_day2_2'].label = ""
+        self.fields['attending_day2_3'].label = ""
+        self.fields['attending_day2_4'].label = ""
+        self.fields['attending_day2_5'].label = ""
 
     YES_NO_CHOICES = [
         (True, 'Yes'),
