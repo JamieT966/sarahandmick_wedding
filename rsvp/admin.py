@@ -11,7 +11,6 @@ def export_to_csv(modeladmin, request, queryset):
     response['Content-Disposition'] = 'attachment; filename={}.csv'.format(opts.verbose_name)
     writer = csv.writer(response)
 
-    # Custom headers that define the order and titles of the CSV columns
     headers = [
         'Guest 1 Name', 'Will Attend (Guest 1)', 'Dietary Requirements (Guest 1)', 'Other Dietary Needs (Guest 1)', 'Attending Day 2 (Guest 1)',
         'Guest 2 Name', 'Will Attend (Guest 2)', 'Dietary Requirements (Guest 2)', 'Other Dietary Needs (Guest 2)', 'Attending Day 2 (Guest 2)',
@@ -24,18 +23,17 @@ def export_to_csv(modeladmin, request, queryset):
 
     for obj in queryset:
         row = []
-        for i in range(1, 6):  # Assuming 5 guests
+        for i in range(1, 6):
             guest_data = [
-                getattr(obj, f'name_{i}', ''),  # Name
-                getattr(obj, f'will_attend_{i}', ''),  # Attendance
-                ", ".join([dr.name for dr in getattr(obj, f'dietary_requirements_{i}').all()]),  # Dietary Requirements
-                getattr(obj, f'other_dietary_input_{i}', ''),  # Other Dietary Needs
-                getattr(obj, f'attending_day2_{i}', ''),  # Attending Day 2
+                getattr(obj, f'name_{i}', ''),
+                getattr(obj, f'will_attend_{i}', ''),
+                ", ".join([dr.name for dr in getattr(obj, f'dietary_requirements_{i}').all()]),
+                getattr(obj, f'other_dietary_input_{i}', ''), 
+                getattr(obj, f'attending_day2_{i}', ''),
             ]
             row.extend(guest_data)
 
-        row.append(getattr(obj, 'music_requests', ''))  # Music requests or other fields that are not guest-specific.
-
+        row.append(getattr(obj, 'music_requests', '')) 
         writer.writerow(row)
 
     return response

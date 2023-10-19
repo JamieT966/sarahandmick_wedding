@@ -1,6 +1,7 @@
 from django import forms
 from .models import RSVP, DietaryRequirement
 
+
 class RSVPForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(RSVPForm, self).__init__(*args, **kwargs)
@@ -41,7 +42,7 @@ class RSVPForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Guest 1'}),
         required=True
     )
-    
+
     will_attend_1 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
@@ -49,19 +50,20 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_1 = forms.ModelMultipleChoiceField(
-        label = "Guest 1: Dietary Requirements?",
+        label="Guest 1: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
 
     other_dietary_input_1 = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
         required=False
     )
 
     attending_day2_1 = forms.ChoiceField(
-        label= "Guest 1: Day Two Attendance?*",
+        label="Guest 1: Day Two Attendance?*",
         choices=DAY2_CHOICES,
         widget=forms.RadioSelect,
         required=False
@@ -73,7 +75,7 @@ class RSVPForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Guest 2'}),
         required=False
     )
-    
+
     will_attend_2 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
@@ -81,14 +83,15 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_2 = forms.ModelMultipleChoiceField(
-        label = "Guest 2: Dietary Requirements?",
+        label="Guest 2: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
 
     other_dietary_input_2 = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
         required=False
     )
 
@@ -105,7 +108,7 @@ class RSVPForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Guest 3'}),
         required=False
     )
-    
+
     will_attend_3 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
@@ -113,14 +116,15 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_3 = forms.ModelMultipleChoiceField(
-        label = "Guest 3: Dietary Requirements?",
+        label="Guest 3: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
 
     other_dietary_input_3 = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
         required=False
     )
 
@@ -137,7 +141,7 @@ class RSVPForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Guest 4'}),
         required=False
     )
-    
+
     will_attend_4 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
@@ -145,14 +149,15 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_4 = forms.ModelMultipleChoiceField(
-        label = "Guest 4: Dietary Requirements?",
+        label="Guest 4: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
 
     other_dietary_input_4 = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
         required=False
     )
 
@@ -169,7 +174,7 @@ class RSVPForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Guest 5'}),
         required=False
     )
-    
+
     will_attend_5 = forms.ChoiceField(
         choices=[(True, 'Yes'), (False, 'No')],
         widget=forms.RadioSelect,
@@ -177,14 +182,15 @@ class RSVPForm(forms.ModelForm):
     )
 
     dietary_requirements_5 = forms.ModelMultipleChoiceField(
-        label = "Guest 5: Dietary Requirements?",
+        label="Guest 5: Dietary Requirements?",
         queryset=DietaryRequirement.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
 
     other_dietary_input_5 = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Other Dietary Requirements', 'class': 'no-label'}),
         required=False
     )
 

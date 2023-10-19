@@ -11,7 +11,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     scroll-behavior: smooth;
     height: 100%;
     /* background: url(https://res.cloudinary.com/drqe8p5dw/image/upload/v1697110052/background_trjvth.png) no-repeat center center fixed; 
@@ -19,9 +20,13 @@ html, body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover; */
-  }
+}
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: "Quattrocento", sans-serif;
 }
 
@@ -32,15 +37,15 @@ p {
 body {
     display: flex;
     flex-direction: column;
-  }
+}
 
 .content {
     flex: 1 0 auto;
-  }
+}
 
 footer {
     height: 75px;
-  }
+}
 
 .footer-logo {
     width: 70px;
@@ -67,8 +72,8 @@ footer {
 }
 
 .hero-image {
-    position: relative; /* Added this to position the pseudo-element relative to hero-image */
-    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center top fixed;
+    position: relative;
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -79,20 +84,22 @@ footer {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.1); /* Adjust the 0.5 value to make it darker or lighter */
-    pointer-events: none; /* Ensures the overlay doesn't interfere with any interactions */
-    z-index: 1; /* Ensures the overlay is above the background image */
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 1;
 }
+
 .hero-content {
     z-index: 1;
-    color: white; 
+    color: white;
 }
 
 .sub-heading {
     margin-bottom: 25px;
 }
 
-.hero-content h1, p {
+.hero-content h1,
+p {
     font-weight: 700;
     /* color: #F2BED1; */
 }
@@ -160,7 +167,7 @@ footer {
 }
 
 .column-section .col-md-4 {
-    border-right: 1px solid #E5B7B7; /* or any color you prefer */
+    border-right: 1px solid #E5B7B7;
     position: relative;
 }
 
@@ -180,7 +187,7 @@ footer {
 }
 
 .column-section .col-md-4 {
-    padding: 20px; /* Adjust as needed */
+    padding: 20px;
 }
 
 /* Form Styling */
@@ -189,14 +196,20 @@ footer {
     text-align: center;
 }
 
-.no-label + label {
+.no-label+label {
     display: none;
 }
 
-#dietary_label_1, #dietary_label_2, #dietary_label_3,
-#dietary_label_4, #dietary_label_5, #day2_label_1, 
-#day2_label_2, #day2_label_3, #day2_label_4, #day2_label_5
-{
+#dietary_label_1,
+#dietary_label_2,
+#dietary_label_3,
+#dietary_label_4,
+#dietary_label_5,
+#day2_label_1,
+#day2_label_2,
+#day2_label_3,
+#day2_label_4,
+#day2_label_5 {
     padding: 10px 0;
 }
 
@@ -280,7 +293,7 @@ input::placeholder {
 }
 
 .form-submitted-bg {
-    position: relative; /* Added this to position the pseudo-element relative to hero-image */
+    position: relative;
     background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center top fixed;
     background-size: cover;
 }
@@ -292,9 +305,9 @@ input::placeholder {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3); /* Adjust the 0.5 value to make it darker or lighter */
-    pointer-events: none; /* Ensures the overlay doesn't interfere with any interactions */
-    z-index: 1; /* Ensures the overlay is above the background image */
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Add and Remove Guest Buttons */
@@ -308,46 +321,48 @@ input::placeholder {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  }
-  
-  .add-guest {
+}
+
+.add-guest {
     background-color: var(--je_light_green) !important;
-  }
-  
-  .remove-guest {
+}
+
+.remove-guest {
     background-color: #E06469 !important;
-  }
-  
-  .btn i {
+}
+
+.btn i {
     display: none;
-  }
-  
-  .btn span {
+}
+
+.btn span {
     display: inline;
-  }
-  
-  .btn:hover, .btn:focus {
+}
+
+.btn:hover,
+.btn:focus {
     filter: brightness(0.9);
-  }
-  /* Adjustments for smaller screens */
-  @media (max-width: 770px) {
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 770px) {
     .btn {
-      width: 35px; /* or any specific size for square shape */
-      height: 35px;
-      padding: 5px !important;
-      border-radius: 50%; /* Making the button circular */
-      justify-content: center;
+        width: 35px;
+        height: 35px;
+        padding: 5px !important;
+        border-radius: 50%;
+        justify-content: center;
     }
-  
+
     .btn i {
-      display: inline; /* Now, the icon becomes visible */
+        display: inline;
     }
-  
+
     .btn span {
-      display: none; /* The text is hidden */
+        display: none;
     }
 
     .guest {
         margin-right: 95px;
     }
-  }
+}

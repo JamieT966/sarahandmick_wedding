@@ -1,43 +1,47 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block title %} J&E Get Hitched {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
 <!-- Hero Section -->
 <div class="hero-image intro-section p-3 container-fluid d-flex justify-content-center align-items-center">
     <div class="hero-content text-center">
-        <h1>Emer & Jamie Are Getting Hitched</h1>
-        <p class="sub-heading">We can't wait to celebrate with you! 
+        <h1>Emer & Jamie Are Getting Hitched!</h1>
+        <p class="sub-heading">We can't wait to celebrate with you!
             <br>
-            <small>Please RSVP by January 29.</small></p>
+            <small>Please RSVP by January 29.</small>
+        </p>
         <a href="#rsvp-form" class="btn-pink scroll-to-form">RSVP Here</a>
     </div>
 </div>
 
 <!-- 3 ICONS -->
-    <section class="container column-section my-5">
-        <div class="row">
-            <!-- Column 1 -->
-            <div class="col-md-4 text-center">
-                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Location_Green_rfehbc.png" alt="Description of Image 1" class="icon-img mb-3">
-                <h3>Four Seasons Hotel</h3>
-                <p>Carlingford, Co.Louth</p>
-            </div>
-            
-            <!-- Column 2 -->
-            <div class="col-md-4 text-center">
-                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Time_Green_bdyuiq.png" alt="Description of Image 2" class="icon-img mb-3">
-                <h3>29 March 2024</h3>
-                <p>2pm</p>
-            </div>
-            
-            <!-- Column 3 -->
-            <div class="col-md-4 text-center">
-                <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697122154/Day_2_Green_uhki6b.png" alt="Description of Image 3" class="icon-img mb-3">
-                <h3>Day 2</h3>
-                <p>6pm Four Seasons Hotel</p>
-            </div>
+<section class="container column-section my-5">
+    <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-4 text-center">
+            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Location_Green_rfehbc.png"
+                alt="Description of Image 1" class="icon-img mb-3">
+            <h3>Four Seasons Hotel</h3>
+            <p>Carlingford, Co.Louth</p>
         </div>
-    </section>
+
+        <!-- Column 2 -->
+        <div class="col-md-4 text-center">
+            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697059156/Time_Green_bdyuiq.png"
+                alt="Description of Image 2" class="icon-img mb-3">
+            <h3>29 March 2024</h3>
+            <p>2pm</p>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-md-4 text-center">
+            <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697122154/Day_2_Green_uhki6b.png"
+                alt="Description of Image 3" class="icon-img mb-3">
+            <h3>Day 2</h3>
+            <p>6pm Four Seasons Hotel</p>
+        </div>
+    </div>
+</section>
 
 <!-- RSVP Form -->
 <div class="container-fluid d-flex justify-content-center align-items-center">
@@ -48,12 +52,13 @@
         <div class="top-of-form pt-2">
             <h2>Wedding RSVP</h2>
             <p>Please fill out only names on invitation. <br>
-            <small>Please use the buttons to add & remove names.</small></p>
+                <small>Please use the buttons to add & remove names.</small>
+            </p>
             <div class="line-seperator first-seperator"></div>
         </div>
 
         {% csrf_token %}
-        
+
         <div class="form-row">
             <div class="form-group col-md-4">
                 {{ form.name_1|as_crispy_field }}
@@ -62,8 +67,10 @@
                 {{ form.will_attend_1|as_crispy_field }}
             </div>
             <div class="form-group button-column col-md-4 d-flex align-items-center justify-content-evenly">
-                <button type="button" class="btn add-guest" id="addGuest"><i class="fas fa-plus"></i><span>Add Guest</span></button>
-                <button type="button" class="btn remove-guest" id="removeGuest"><i class="fas fa-minus"></i><span>Remove Guest</span></button>
+                <button type="button" class="btn add-guest" id="addGuest"><i class="fas fa-plus"></i><span>Add
+                        Guest</span></button>
+                <button type="button" class="btn remove-guest" id="removeGuest"><i class="fas fa-minus"></i><span>Remove
+                        Guest</span></button>
             </div>
         </div>
 
@@ -114,11 +121,11 @@
                 <label id="dietary_label_1">%GUEST_NAME% do you have any dietary requirements?</label>
                 {{ form.dietary_requirements_1|as_crispy_field }}
             </div>
-            
+
             <div class="form-group other-labels">
                 {{ form.other_dietary_input_1|as_crispy_field }}
             </div>
-            
+
             <!-- <div class="line-seperator"></div> -->
             <div class="form-group other-labels">
                 <label id="day2_label_1">%GUEST_NAME%?, are you attending day 2? </label>
@@ -216,194 +223,190 @@
 
 <div class="container d-flex justify-content-center">
     <a href="{% url 'home_view' %}">
-        <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049038/Logo_Idea_250x250_qyuiyv.png" alt="Website Logo" class="footer-logo">
+        <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049038/Logo_Idea_250x250_qyuiyv.png"
+            alt="Website Logo" class="footer-logo">
     </a>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to handle showing and hiding additional details based on attendance
-    function handleAttendanceChange(attendanceInputs, detailsElement, guestNumber) {
-        attendanceInputs.forEach(input => {
-            input.addEventListener('change', function() {
-                if (input.value === 'True' && input.checked) {
-                    detailsElement.style.display = 'block';
-                    const attendingDay2Field = detailsElement.querySelector(`input[name="attending_day2_${guestNumber}"]`);
-                    if (attendingDay2Field) {
-                        attendingDay2Field.setAttribute('required', '');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to handle showing and hiding additional details based on attendance
+        function handleAttendanceChange(attendanceInputs, detailsElement, guestNumber) {
+            attendanceInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    if (input.value === 'True' && input.checked) {
+                        detailsElement.style.display = 'block';
+                        const attendingDay2Field = detailsElement.querySelector(`input[name="attending_day2_${guestNumber}"]`);
+                        if (attendingDay2Field) {
+                            attendingDay2Field.setAttribute('required', '');
+                        }
+                    } else {
+                        detailsElement.style.display = 'none';
+                        detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
+                            field.removeAttribute('required');
+                        });
                     }
-                } else {
-                    detailsElement.style.display = 'none';
-                    detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
+                });
+            });
+        }
+
+        // Setup attendance handling for each guest
+        function setupGuestAttendance(guestNumber) {
+            const willAttend = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
+            const additionalDetails = document.querySelector(`.conditional-field-${guestNumber}`);
+
+            if (willAttend.length > 0 && additionalDetails) {
+                handleAttendanceChange(willAttend, additionalDetails, guestNumber);
+            }
+        }
+
+        // Function to update labels with the guest's first name or a default name
+        function updateGuestLabels(guestNumber, inputName = '') {
+            const day2Label = document.querySelector(`#day2_label_${guestNumber}`);
+            const dietaryLabel = document.querySelector(`#dietary_label_${guestNumber}`);
+
+            const nameParts = inputName.trim().split(' ');
+            const firstName = nameParts[0] || `Guest ${guestNumber}`;
+            const boldFirstName = `<strong>${firstName}</strong>`;
+
+            if (day2Label) {
+                day2Label.innerHTML = `${boldFirstName}, are you attending day 2?`;
+            }
+
+            if (dietaryLabel) {
+                dietaryLabel.innerHTML = `${boldFirstName}, do you have any dietary requirements?`;
+            }
+        }
+
+        // Setup guest name change handling for each guest
+        function setupGuestNameChange(guestNumber) {
+            const nameInput = document.querySelector(`input[name="name_${guestNumber}"]`);
+
+            if (nameInput) {
+                nameInput.addEventListener('input', function () {
+                    updateGuestLabels(guestNumber, nameInput.value);
+                });
+            }
+            updateGuestLabels(guestNumber);
+        }
+
+        // This function checks if any guest has selected 'Yes' for attending and shows/hides the music request section.
+        function updateMusicRequests() {
+            const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
+            let anyoneAttending = false;
+
+            willAttendRadios.forEach(function (radio) {
+                if (radio.checked && radio.value === 'True') {
+                    anyoneAttending = true;
+                }
+            });
+
+            const musicRequestsSection = document.getElementById('music-requests-section');
+            if (anyoneAttending) {
+                musicRequestsSection.style.display = 'block';
+            } else {
+                musicRequestsSection.style.display = 'none';
+            }
+        }
+
+        // Initialize all the guest-related listeners
+        for (let i = 1; i <= 5; i++) {
+            setupGuestAttendance(i);
+            setupGuestNameChange(i);
+        }
+
+        // Check attendance on initial load
+        updateMusicRequests();
+
+        // Attach the event listeners to the 'will attend' radio buttons.
+        const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
+        willAttendRadios.forEach(function (radio) {
+            radio.addEventListener('change', updateMusicRequests);
+        });
+
+        // Handling for adding/removing guests
+        const guestSections = document.querySelectorAll('.guest');
+        const addGuestButton = document.getElementById('addGuest');
+        const removeGuestButton = document.getElementById('removeGuest');
+        let guestCount = guestSections.length;
+
+        function getCurrentGuestCount() {
+            let count = 0;
+            guestSections.forEach(section => {
+                if (section.style.display !== 'none') {
+                    count++;
+                }
+            });
+            return count;
+        }
+
+        function getNextHiddenGuestSection() {
+            return Array.from(guestSections).find(section => section.style.display === 'none');
+        }
+
+        removeGuestButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            const currentGuestCount = getCurrentGuestCount();
+
+            if (currentGuestCount > 0) {
+                const lastVisibleSection = guestSections[currentGuestCount - 1];
+
+                // Reset the 'will attend' status and trigger change events to update dependent UI
+                const willAttendRadios = lastVisibleSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
+                willAttendRadios.forEach(function (radio) {
+                    if (radio.checked) {
+                        radio.checked = false;
+                        radio.dispatchEvent(new Event('change', { 'bubbles': true }));
+                    }
+                });
+
+                // Hide the additional details for this guest since they're being removed
+                const additionalDetails = lastVisibleSection.querySelector('.conditional-fields');
+                if (additionalDetails) {
+                    additionalDetails.style.display = 'none';
+                    additionalDetails.querySelectorAll('input, select, textarea').forEach(field => {
+                        field.value = '';
                         field.removeAttribute('required');
                     });
                 }
-            });
-        });
-    }
 
-    // Setup attendance handling for each guest
-    function setupGuestAttendance(guestNumber) {
-        const willAttend = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
-        const additionalDetails = document.querySelector(`.conditional-field-${guestNumber}`);
+                lastVisibleSection.style.display = 'none';
 
-        if (willAttend.length > 0 && additionalDetails) {
-            handleAttendanceChange(willAttend, additionalDetails, guestNumber);
-        }
-    }
-
-    // Function to update labels with the guest's first name or a default name
-    function updateGuestLabels(guestNumber, inputName = '') {
-        const day2Label = document.querySelector(`#day2_label_${guestNumber}`);
-        const dietaryLabel = document.querySelector(`#dietary_label_${guestNumber}`);
-
-        const nameParts = inputName.trim().split(' ');
-        const firstName = nameParts[0] || `Guest ${guestNumber}`;
-        const boldFirstName = `<strong>${firstName}</strong>`;
-
-        if (day2Label) {
-            day2Label.innerHTML = `${boldFirstName}, are you attending day 2?`;
-        }
-
-        if (dietaryLabel) {
-            dietaryLabel.innerHTML = `${boldFirstName}, do you have any dietary requirements?`;
-        }
-    }
-
-    // Setup guest name change handling for each guest
-    function setupGuestNameChange(guestNumber) {
-        const nameInput = document.querySelector(`input[name="name_${guestNumber}"]`);
-
-        if (nameInput) {
-            nameInput.addEventListener('input', function() {
-                updateGuestLabels(guestNumber, nameInput.value);
-            });
-        }
-        updateGuestLabels(guestNumber); // Set default label on initial load
-    }
-
-    // This function checks if any guest has selected 'Yes' for attending and shows/hides the music request section.
-    function updateMusicRequests() {
-        const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
-        let anyoneAttending = false;
-
-        willAttendRadios.forEach(function(radio) {
-            if (radio.checked && radio.value === 'True') {
-                anyoneAttending = true;
+                updateMusicRequests();
             }
         });
 
-        const musicRequestsSection = document.getElementById('music-requests-section');
-        if (anyoneAttending) {
-            musicRequestsSection.style.display = 'block';
-        } else {
-            musicRequestsSection.style.display = 'none';
-        }
-    }
+        // Handling for adding guests
+        addGuestButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            const nextHiddenSection = getNextHiddenGuestSection();
 
-    // Initialize all the guest-related listeners
-    for (let i = 1; i <= 5; i++) {
-        setupGuestAttendance(i);
-        setupGuestNameChange(i);
-    }
+            if (nextHiddenSection) {
+                nextHiddenSection.style.display = 'flex';
+                nextHiddenSection.querySelectorAll('input').forEach(input => {
+                    input.setAttribute('required', '');
+                });
 
-    // Check attendance on initial load
-    updateMusicRequests();
+                const guestNumber = nextHiddenSection.getAttribute('data-guest-number');
 
-    // Attach the event listeners to the 'will attend' radio buttons.
-    const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
-    willAttendRadios.forEach(function(radio) {
-        radio.addEventListener('change', updateMusicRequests);
+                setupGuestAttendance(guestNumber);
+                setupGuestNameChange(guestNumber);
+
+                const willAttendRadios = nextHiddenSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
+                willAttendRadios.forEach(radio => {
+                    if (radio.value === 'True') {
+                        radio.checked = false;
+                    }
+                });
+
+                updateMusicRequests();
+            }
+        });
+
     });
-
-    // Handling for adding/removing guests
-    const guestSections = document.querySelectorAll('.guest');
-    const addGuestButton = document.getElementById('addGuest');
-    const removeGuestButton = document.getElementById('removeGuest');
-    let guestCount = guestSections.length; // assuming all guests are visible at the start
-
-    function getCurrentGuestCount() {
-        let count = 0;
-        guestSections.forEach(section => {
-            if (section.style.display !== 'none') {
-                count++;
-            }
-        });
-        return count;
-    }
-
-    function getNextHiddenGuestSection() {
-        return Array.from(guestSections).find(section => section.style.display === 'none');
-    }
-
-    removeGuestButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    const currentGuestCount = getCurrentGuestCount();
-
-    if (currentGuestCount > 0) {
-        const lastVisibleSection = guestSections[currentGuestCount - 1];
-
-        // Reset the 'will attend' status and trigger change events to update dependent UI
-        const willAttendRadios = lastVisibleSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
-        willAttendRadios.forEach(function(radio) {
-            if (radio.checked) {
-                radio.checked = false;
-                // Triggering change event to ensure all dependent UI updates occur
-                radio.dispatchEvent(new Event('change', { 'bubbles': true }));
-            }
-        });
-
-        // Hide the additional details for this guest since they're being removed
-        const additionalDetails = lastVisibleSection.querySelector('.conditional-fields');
-        if (additionalDetails) {
-            additionalDetails.style.display = 'none'; // This ensures it starts hidden if they're re-added
-            additionalDetails.querySelectorAll('input, select, textarea').forEach(field => {
-                field.value = ''; // Clear any input they had entered
-                field.removeAttribute('required'); // They're no longer attending, so these fields aren't required
-            });
-        }
-
-        lastVisibleSection.style.display = 'none'; // Hide the guest section
-
-        // After removing a guest, update the music request section if needed
-        updateMusicRequests();
-    }
-});
-
-// Handling for adding guests
-addGuestButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    const nextHiddenSection = getNextHiddenGuestSection();
-
-    if (nextHiddenSection) {
-        nextHiddenSection.style.display = 'flex';
-        nextHiddenSection.querySelectorAll('input').forEach(input => {
-            input.setAttribute('required', '');
-        });
-
-        // Get the guest number for this guest section. This assumes that your guest sections have an attribute like 'data-guest-number' that stores their number.
-        const guestNumber = nextHiddenSection.getAttribute('data-guest-number');
-
-        // Set up the attendance and name change handling again for this guest, as they've been re-added
-        setupGuestAttendance(guestNumber);
-        setupGuestNameChange(guestNumber);
-
-        // Reset their RSVP radio buttons to ensure they're not still marked as attending
-        const willAttendRadios = nextHiddenSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
-        willAttendRadios.forEach(radio => {
-            if (radio.value === 'True') { // This is the 'Yes' option
-                radio.checked = false; // Ensure it's not checked
-            }
-        });
-
-        updateMusicRequests(); // Check if we need to show the music requests now that we've added a guest
-    }
-});
-
-});
 
 
 </script>
-    
+
 
 {% endblock %}
