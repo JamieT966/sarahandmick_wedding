@@ -246,10 +246,15 @@ footer {
     max-width: fit-content;
     flex-grow: 0;
     flex-shrink: 0;
+    padding-left: 20px;
 }
 
 .rsvp-col {
     margin-left: 10px;
+}
+
+input::placeholder {
+    color: #909090 !important;
 }
 
 /* Form submitted page */
@@ -312,9 +317,9 @@ footer {
   /* Adjustments for smaller screens */
   @media (max-width: 770px) {
     .btn {
-      width: 40px; /* or any specific size for square shape */
-      height: 40px;
-      padding: 10px !important;
+      width: 35px; /* or any specific size for square shape */
+      height: 35px;
+      padding: 5px !important;
       border-radius: 50%; /* Making the button circular */
       justify-content: center;
     }
