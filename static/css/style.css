@@ -77,12 +77,6 @@ footer {
     background-size: cover;
 }
 
-@supports (-webkit-touch-callout: none) {
-    .intro {
-      background-attachment: scroll;
-    }
-}
-
 .hero-image::before {
     content: "";
     position: absolute;
@@ -108,6 +102,12 @@ footer {
 p {
     font-weight: 700;
     /* color: #F2BED1; */
+}
+
+@supports (-webkit-touch-callout: none) {
+    .hero-image, .intro-section {
+      background-attachment: scroll;
+    }
 }
 
 /* Button Styling */
