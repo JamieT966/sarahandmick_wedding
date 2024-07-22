@@ -33,7 +33,6 @@ class RSVPForm(forms.ModelForm):
     DAY2_CHOICES = [
         ('Yes', 'Yes'),
         ('No', 'No'),
-        ('Maybe', "I'll see how the head is")
     ]
 
     # GUEST 1
