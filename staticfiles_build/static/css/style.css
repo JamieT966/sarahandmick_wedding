@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
+
+:root {
+    --je_green: #344F3F;
+    --je_pink: #E4AEC5;
+    --je_light_green: #82A284;
+    --je_light_pink: #FFC4DD;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    height: 100%;
+    /* background: url(https://res.cloudinary.com/drqe8p5dw/image/upload/v1697110052/background_trjvth.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Quattrocento", sans-serif;
+}
+
+p {
+    font-family: "Quattrocento Sans", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+footer {
+    height: 75px;
+}
+
+.footer-logo {
+    width: 70px;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+/* Hero Section */
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 125px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.intro-section {
+    height: 100vh;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.hero-image {
+    position: relative;
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1721663618/IMG_0137_ndpgof.jpg') no-repeat 50% 25% fixed;
+    background-size: cover;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .hero-image, .intro-section {
+      background-attachment: scroll;
+    }
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 1;
+    color: white;
+}
+
+.sub-heading {
+    margin-bottom: 25px;
+}
+
+.hero-content h1,
+p {
+    font-weight: 700;
+    /* color: #F2BED1; */
+}
+
+/* Button Styling */
+.btn-pink {
+    background-color: var(--je_pink);
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+
+.btn-pink:hover {
+    background-color: #d3a0a0;
+    transform: scale(1.05);
+}
+
+.btn-pink:active {
+    background-color: var(--je_pink);
+    transform: scale(1);
+}
+
+.btn-pink:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(229, 183, 183, 0.5);
+}
+
+.btn-green {
+    background-color: var(--je_light_green);
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-green:hover {
+    background-color: #355240;
+    /* transform: scale(1.05); */
+}
+
+.btn-green:active {
+    background-color: #344f3f;
+    transform: scale(1);
+}
+
+.btn-green:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 79, 63, 0.5);
+}
+
+/* Icon section */
+
+.icon-img {
+    height: 200px;
+}
+
+.container .col-md-4 {
+    padding: 20px;
+}
+
+.column-section .col-md-4 {
+    border-right: 1px solid #E5B7B7;
+    position: relative;
+}
+
+.column-section .col-md-4:last-child {
+    border-right: none;
+}
+
+@media (max-width: 767.98px) {
+    .column-section .col-md-4 {
+        border-right: none;
+        border-bottom: 1px solid #E5B7B7;
+    }
+
+    .column-section .col-md-4:last-child {
+        border-bottom: none;
+    }
+}
+
+.column-section .col-md-4 {
+    padding: 20px;
+}
+
+/* Form Styling */
+
+.top-of-form {
+    text-align: center;
+}
+
+.no-label+label {
+    display: none;
+}
+
+#dietary_label_1,
+#dietary_label_2,
+#dietary_label_3,
+#dietary_label_4,
+#dietary_label_5,
+#day2_label_1,
+#day2_label_2,
+#day2_label_3,
+#day2_label_4,
+#day2_label_5 {
+    padding: 10px 0;
+}
+
+.form-container {
+    width: 500px;
+    border-radius: 5px;
+    background-color: var(--je_pink);
+    color: #fff;
+}
+
+@media (min-width: 767.98px) {
+    .form-container {
+        width: 800px;
+    }
+}
+
+.form-label {
+    font-family: "Quattrocento Sans", sans-serif;
+    margin-top: 15px;
+    width: 120%;
+}
+
+.other-labels label {
+    width: 100%;
+}
+
+.line-seperator {
+    width: 100%;
+    border-bottom: 1px solid white;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+.first-seperator {
+    margin: 10px auto;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-row .form-group {
+    /* flex: 1; */
+    margin-right: 10px;
+}
+
+.form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+.form-row .form-group.col.d-flex {
+    justify-content: space-between;
+}
+
+.button-column {
+    justify-content: center;
+    max-width: fit-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-left: 20px;
+}
+
+.rsvp-col {
+    margin-left: 10px;
+}
+
+input::placeholder {
+    color: #909090 !important;
+}
+
+.guest-fields .form-label {
+    font-weight: bolder;
+}
+
+/* Form submitted page */
+.form-submitted {
+    height: 100vh;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.form-submitted-bg {
+    position: relative;
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center top fixed;
+    background-size: cover;
+}
+
+.form-submitted-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Add and Remove Guest Buttons */
+
+.btn {
+    border: 1px solid white !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease !important;
+    padding: 10px !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.add-guest {
+    background-color: var(--je_light_green) !important;
+}
+
+.remove-guest {
+    background-color: #E06469 !important;
+}
+
+.btn i {
+    display: none;
+}
+
+.btn span {
+    display: inline;
+}
+
+.btn:hover,
+.btn:focus {
+    filter: brightness(0.9);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 770px) {
+    .btn {
+        width: 35px;
+        height: 35px;
+        padding: 5px !important;
+        border-radius: 50%;
+        justify-content: center;
+    }
+
+    .btn i {
+        display: inline;
+    }
+
+    .btn span {
+        display: none;
+    }
+
+    .guest {
+        margin-right: 95px;
+    }
+}
