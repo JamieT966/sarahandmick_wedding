@@ -3,10 +3,26 @@
 {% block title %} Wooo {% endblock %}
 
 {% block content %}
-<div class="form-submitted-bg form-submitted p-3 container-fluid d-flex justify-content-center align-items-center">
-    <div class="hero-content text-center">
-        <h1>Thanks for letting us know</h1>
-        <p>Looking forward to seeing you!</p>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-7 left-column p-0">
+            <div class="hero-section text-center justify-content-center align-self-center">
+                <a href="{% url 'home_view' %}">
+                    <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1721662789/sarah_logo_transparent_q6vdvy.png" alt="Logo" class="logo">
+                </a>
+                <h1>Thanks for letting us know</h1>
+                <p>Looking forward to seeing you!</p>
+            </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="col-md-5 right-column p-0">
+            <div class="icons">
+                <div class="hero-image intro-section">
+
+                </div>
+        </div>
     </div>
 </div>
 {% endblock %}
