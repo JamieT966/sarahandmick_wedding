@@ -246,7 +246,10 @@
             </div>
         </div>
 
-        <button type="submit" class="btn-green">Submit</button>
+        <button type="submit" class="btn-green" id="submitButton">Submit</button>
+        <div id="loadingAnimation" class="loading-animation" style="display: none;">
+            <div class="spinner"></div>
+        </div>
     </form>
 </div>
 
@@ -434,6 +437,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
             updateMusicRequests();
         }
+    });
+
+    // Integrate loader and submit button handling
+    var form = document.getElementById('rsvp-form');
+    var submitButton = document.getElementById('submitButton');
+    var loaderIcon = document.getElementById('loadingAnimation');
+
+    form.addEventListener('submit', function (event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Hide submit button
+        submitButton.style.display = "none";
+
+        // Show loader icon
+        loaderIcon.style.display = "inline-block";
+
+        form.submit();
+        // Simulate form submission delay
+        setTimeout(function () {
+        }, 7000);
     });
 });
 
