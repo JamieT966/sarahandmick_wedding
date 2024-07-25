@@ -137,6 +137,9 @@ footer {
     color: var(--font_colour);
     height: 100vh;
     align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .hero-section h1 {
@@ -146,7 +149,7 @@ footer {
 }
 
 .sub-heading {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     padding: 10px 0;
     color: var(--font_colour);
 }
@@ -171,7 +174,7 @@ p {
     font-size: 18px;
     transition: background-color 0.3s, transform 0.3s;
     text-decoration: none;
-    margin: 20px 0;
+    margin: 0;
 }
 
 .btn-pink:hover {
