@@ -43,6 +43,8 @@
                 <p>Athy, Co. Kildare</p>
             </div>
 
+            <hr class="line-separator">
+
             <!-- Column 2 -->
             <div class="col-12 text-center">
                 <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1721828147/Time_lzqdb1.png"
@@ -51,15 +53,20 @@
                 <p>1.30pm</p>
             </div>
 
+            <hr class="line-separator">
+
             <!-- Column 3 -->
             <div class="col-12 text-center day-two">
                 <img src="https://res.cloudinary.com/drqe8p5dw/image/upload/v1721828148/Day_2_qmjd7q.png"
                     alt="Day 2 icon" class="icon-img mb-3">
                 <h3>Clancys Bar</h3>
                 <p>5pm (4 minute drive from the Clanard Court Hotel).</p>
-                <p class="mb-0 mt-2"><i>Bus is organised to drop guests from the hotel to Clancys for 5pm, 
+                <p class="mb-0 mt-3"><i>Bus is organised to drop guests from the hotel to Clancys for 5pm, 
                     and then back to the hotel after last orders</i></p>
             </div>
+
+            <hr class="line-separator">
+
         </div>
     </div>
 </div>
@@ -252,182 +259,155 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Function to handle showing and hiding additional details based on attendance
-        function handleAttendanceChange(attendanceInputs, detailsElement, guestNumber) {
-            attendanceInputs.forEach(input => {
-                input.addEventListener('change', function () {
-                    if (input.value === 'True' && input.checked) {
-                        detailsElement.style.display = 'block';
-                        const attendingDay2Field = detailsElement.querySelector(`input[name="attending_day2_${guestNumber}"]`);
-                        if (attendingDay2Field) {
-                            attendingDay2Field.setAttribute('required', '');
-                        }
-                    } else {
-                        detailsElement.style.display = 'none';
-                        detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
-                            field.removeAttribute('required');
-                        });
-                    }
-                });
-            });
-        }
-
-        // Setup attendance handling for each guest
-        function setupGuestAttendance(guestNumber) {
-            const willAttend = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
-            const additionalDetails = document.querySelector(`.conditional-field-${guestNumber}`);
-
-            if (willAttend.length > 0 && additionalDetails) {
-                handleAttendanceChange(willAttend, additionalDetails, guestNumber);
-            }
-        }
-
-        // Function to update labels with the guest's first name or a default name
-        function updateGuestLabels(guestNumber, inputName = '') {
-            const day2Label = document.querySelector(`#day2_label_${guestNumber}`);
-            const dietaryLabel = document.querySelector(`#dietary_label_${guestNumber}`);
-
-            const nameParts = inputName.trim().split(' ');
-            const firstName = nameParts[0] || `Guest ${guestNumber}`;
-            const boldFirstName = `<strong>${firstName}</strong>`;
-
-            if (day2Label) {
-                day2Label.innerHTML = `${boldFirstName}, are you attending day 2?`;
-            }
-
-            if (dietaryLabel) {
-                dietaryLabel.innerHTML = `${boldFirstName}, do you have any dietary requirements?`;
-            }
-        }
-
-        // Setup guest name change handling for each guest
-        function setupGuestNameChange(guestNumber) {
-            const nameInput = document.querySelector(`input[name="name_${guestNumber}"]`);
-
-            if (nameInput) {
-                nameInput.addEventListener('input', function () {
-                    updateGuestLabels(guestNumber, nameInput.value);
-                });
-            }
-            updateGuestLabels(guestNumber);
-        }
-
-        // This function checks if any guest has selected 'Yes' for attending and shows/hides the music request section.
-        function updateMusicRequests() {
-            const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
-            let anyoneAttending = false;
-
-            willAttendRadios.forEach(function (radio) {
-                if (radio.checked && radio.value === 'True') {
-                    anyoneAttending = true;
-                }
-            });
-
-            const musicRequestsSection = document.getElementById('music-requests-section');
-            if (anyoneAttending) {
-                musicRequestsSection.style.display = 'block';
-            } else {
-                musicRequestsSection.style.display = 'none';
-            }
-        }
-
-        // Initialize all the guest-related listeners
-        for (let i = 1; i <= 5; i++) {
-            setupGuestAttendance(i);
-            setupGuestNameChange(i);
-        }
-
-        // Check attendance on initial load
-        updateMusicRequests();
-
-        // Attach the event listeners to the 'will attend' radio buttons.
-        const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
-        willAttendRadios.forEach(function (radio) {
-            radio.addEventListener('change', updateMusicRequests);
-        });
-
-        // Handling for adding/removing guests
-        const guestSections = document.querySelectorAll('.guest');
-        const addGuestButton = document.getElementById('addGuest');
-        const removeGuestButton = document.getElementById('removeGuest');
-        let guestCount = guestSections.length;
-
-        function getCurrentGuestCount() {
-            let count = 0;
-            guestSections.forEach(section => {
-                if (section.style.display !== 'none') {
-                    count++;
-                }
-            });
-            return count;
-        }
-
-        function getNextHiddenGuestSection() {
-            return Array.from(guestSections).find(section => section.style.display === 'none');
-        }
-
-        removeGuestButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            const currentGuestCount = getCurrentGuestCount();
-
-            if (currentGuestCount > 0) {
-                const lastVisibleSection = guestSections[currentGuestCount - 1];
-
-                // Reset the 'will attend' status and trigger change events to update dependent UI
-                const willAttendRadios = lastVisibleSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
-                willAttendRadios.forEach(function (radio) {
-                    if (radio.checked) {
-                        radio.checked = false;
-                        radio.dispatchEvent(new Event('change', { 'bubbles': true }));
-                    }
-                });
-
-                // Hide the additional details for this guest since they're being removed
-                const additionalDetails = lastVisibleSection.querySelector('.conditional-fields');
-                if (additionalDetails) {
-                    additionalDetails.style.display = 'none';
-                    additionalDetails.querySelectorAll('input, select, textarea').forEach(field => {
-                        field.value = '';
+document.addEventListener('DOMContentLoaded', function () {
+    function handleAttendanceChange(attendanceInputs, detailsElement, guestNumber) {
+        attendanceInputs.forEach(input => {
+            input.addEventListener('change', function () {
+                if (input.value === 'True' && input.checked) {
+                    detailsElement.style.display = 'block';
+                    detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
+                        field.setAttribute('required', '');
+                    });
+                } else {
+                    detailsElement.style.display = 'none';
+                    detailsElement.querySelectorAll('input, select, textarea').forEach(field => {
                         field.removeAttribute('required');
                     });
                 }
+            });
+        });
+    }
 
-                lastVisibleSection.style.display = 'none';
+    function setupGuestAttendance(guestNumber) {
+        const willAttend = document.querySelectorAll(`input[name="will_attend_${guestNumber}"]`);
+        const additionalDetails = document.querySelector(`.conditional-field-${guestNumber}`);
 
-                updateMusicRequests();
+        if (willAttend.length > 0 && additionalDetails) {
+            handleAttendanceChange(willAttend, additionalDetails, guestNumber);
+        }
+    }
+
+    function updateGuestLabels(guestNumber, inputName = '') {
+        const day2Label = document.querySelector(`#day2_label_${guestNumber}`);
+        const dietaryLabel = document.querySelector(`#dietary_label_${guestNumber}`);
+
+        const nameParts = inputName.trim().split(' ');
+        const firstName = nameParts[0] || `Guest ${guestNumber}`;
+        const boldFirstName = `<strong>${firstName}</strong>`;
+
+        if (day2Label) {
+            day2Label.innerHTML = `${boldFirstName}, are you attending day 2?`;
+        }
+
+        if (dietaryLabel) {
+            dietaryLabel.innerHTML = `${boldFirstName}, do you have any dietary requirements?`;
+        }
+    }
+
+    function setupGuestNameChange(guestNumber) {
+        const nameInput = document.querySelector(`input[name="name_${guestNumber}"]`);
+
+        if (nameInput) {
+            nameInput.addEventListener('input', function () {
+                updateGuestLabels(guestNumber, nameInput.value);
+            });
+        }
+        updateGuestLabels(guestNumber);
+    }
+
+    function updateMusicRequests() {
+        const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
+        let anyoneAttending = false;
+
+        willAttendRadios.forEach(function (radio) {
+            if (radio.checked && radio.value === 'True') {
+                anyoneAttending = true;
             }
         });
 
-        // Handling for adding guests
-        addGuestButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            const nextHiddenSection = getNextHiddenGuestSection();
+        const musicRequestsSection = document.getElementById('music-requests-section');
+        if (anyoneAttending) {
+            musicRequestsSection.style.display = 'block';
+        } else {
+            musicRequestsSection.style.display = 'none';
+        }
+    }
 
-            if (nextHiddenSection) {
-                nextHiddenSection.style.display = 'flex';
-                nextHiddenSection.querySelectorAll('input').forEach(input => {
-                    input.setAttribute('required', '');
-                });
+    for (let i = 1; i <= 5; i++) {
+        setupGuestAttendance(i);
+        setupGuestNameChange(i);
+    }
 
-                const guestNumber = nextHiddenSection.getAttribute('data-guest-number');
+    updateMusicRequests();
 
-                setupGuestAttendance(guestNumber);
-                setupGuestNameChange(guestNumber);
-
-                const willAttendRadios = nextHiddenSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
-                willAttendRadios.forEach(radio => {
-                    if (radio.value === 'True') {
-                        radio.checked = false;
-                    }
-                });
-
-                updateMusicRequests();
-            }
-        });
-
+    const willAttendRadios = document.querySelectorAll('input[type=radio][name^="will_attend_"]');
+    willAttendRadios.forEach(function (radio) {
+        radio.addEventListener('change', updateMusicRequests);
     });
 
+    const guestSections = document.querySelectorAll('.guest');
+    const addGuestButton = document.getElementById('addGuest');
+    const removeGuestButton = document.getElementById('removeGuest');
+    let guestCount = guestSections.length;
+
+    function getCurrentGuestCount() {
+        let count = 0;
+        guestSections.forEach(section => {
+            if (section.style.display !== 'none') {
+                count++;
+            }
+        });
+        return count;
+    }
+
+    function getNextHiddenGuestSection() {
+        return Array.from(guestSections).find(section => section.style.display === 'none');
+    }
+
+    removeGuestButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const currentGuestCount = getCurrentGuestCount();
+
+        if (currentGuestCount > 0) {
+            const lastVisibleSection = guestSections[currentGuestCount - 1];
+
+            lastVisibleSection.querySelectorAll('input, select, textarea').forEach(field => {
+                field.removeAttribute('required');
+            });
+
+            lastVisibleSection.style.display = 'none';
+
+            updateMusicRequests();
+        }
+    });
+
+    addGuestButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const nextHiddenSection = getNextHiddenGuestSection();
+
+        if (nextHiddenSection) {
+            nextHiddenSection.style.display = 'flex';
+            nextHiddenSection.querySelectorAll('input').forEach(input => {
+                input.setAttribute('required', '');
+            });
+
+            const guestNumber = nextHiddenSection.getAttribute('data-guest-number');
+
+            setupGuestAttendance(guestNumber);
+            setupGuestNameChange(guestNumber);
+
+            const willAttendRadios = nextHiddenSection.querySelectorAll('input[type=radio][name^="will_attend_"]');
+            willAttendRadios.forEach(radio => {
+                if (radio.value === 'True') {
+                    radio.checked = false;
+                }
+            });
+
+            updateMusicRequests();
+        }
+    });
+
+});
 
 </script>
 

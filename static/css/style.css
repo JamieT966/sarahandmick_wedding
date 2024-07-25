@@ -12,13 +12,14 @@
     --form_colour: #fff; */
 
     --je_green: #344F3F;
-    --je_pink: #E4AEC5;
+    --je_pink: #BF7D7D;
     --je_light_green: #82A284;
     --je_light_pink: #FFC4DD;
     --new_pink: #BF7D7D;
     --slight_pink_bg: #fff7f9;
     --font_colour: #212529; 
     --form_colour: #fff;
+    --form-bg-color: #E4AEC5;
 
 }
 
@@ -234,13 +235,21 @@ p {
     border-right: none;
 }
 
+.line-separator {
+    border: none;
+    height: 2px;
+    background-color: var(--je_pink);
+    margin: 10px auto;
+    width: 75%;
+}
+
 .day-two p {
     width: 75%;
     margin: 0 auto;
 }
 
 .location-icon {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 @media (max-width: 767.98px) {
@@ -294,7 +303,7 @@ p {
     max-width: 90%;
     border-radius: 5px;
     margin-top: 50px;
-    background-color: var(--je_pink);
+    background-color: var(--form-bg-color);
     color: var(--form_colour);
 }
 
