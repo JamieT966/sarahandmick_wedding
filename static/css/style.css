@@ -1,10 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 
 :root {
+/*
     --je_green: #344F3F;
     --je_pink: #E4AEC5;
     --je_light_green: #82A284;
     --je_light_pink: #FFC4DD;
+    --new_pink: #BF7D7D;
+    --slight_pink_bg: #fff7f9;
+    --font_colour: #212529; 
+    --form_colour: #fff; */
+
+    --je_green: #344F3F;
+    --je_pink: #E4AEC5;
+    --je_light_green: #82A284;
+    --je_light_pink: #FFC4DD;
+    --new_pink: #BF7D7D;
+    --slight_pink_bg: #fff7f9;
+    --font_colour: #212529; 
+    --form_colour: #fff;
+
 }
 
 * {
@@ -15,7 +30,8 @@ html,
 body {
     scroll-behavior: smooth;
     height: 100%;
-    /* background: url(https://res.cloudinary.com/drqe8p5dw/image/upload/v1697110052/background_trjvth.png) no-repeat center center fixed; 
+    background-color: var(--slight_pink_bg);
+    /* background: url(https://res.cloudinary.com/drqe8p5dw/image/upload/v1721663618/IMG_0137_ndpgof.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -69,12 +85,19 @@ footer {
     height: 100vh;
     text-align: center;
     font-size: 1.2rem;
+    color: var(--font_colour);
 }
 
 .hero-image {
     position: relative;
-    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1721663618/IMG_0137_ndpgof.jpg') no-repeat 50% 25% fixed;
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1721663618/IMG_0137_ndpgof.jpg') no-repeat 50% 40%;
     background-size: cover;
+    color: var(--font_colour);
+}
+
+.new-hero-image {
+    width: 100%;
+    overflow-y: hidden;
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -95,31 +118,42 @@ footer {
     z-index: 1;
 }
 
-.hero-content {
-    z-index: 1;
-    color: white;
+.hero-section {
+    background-color: var(--slight_pink_bg);
+    color: var(--font_colour);
+    height: 100vh;
+    align-content: center;
+}
+
+.hero-section h1 {
+    width: 75%;
+    margin: 10px auto;
+    color: var(--font_colour);
 }
 
 .sub-heading {
     margin-bottom: 25px;
+    padding: 10px 0;
+    color: var(--font_colour);
 }
 
 .hero-content h1,
 p {
     font-weight: 700;
-    /* color: #F2BED1; */
+    color: var(--font_colour);
 }
 
 /* Button Styling */
 .btn-pink {
     background-color: var(--je_pink);
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     color: #fff;
     padding: 15px 20px;
     border-radius: 5px;
     font-size: 18px;
     transition: background-color 0.3s, transform 0.3s;
     text-decoration: none;
+    margin: 20px 0;
 }
 
 .btn-pink:hover {
@@ -170,11 +204,13 @@ p {
 
 .container .col-md-4 {
     padding: 20px;
+    color: var(--font_colour);
 }
 
 .column-section .col-md-4 {
-    border-right: 1px solid #E5B7B7;
+    border-right: 1px solid var(--new_pink);
     position: relative;
+    color: var(--font_colour);
 }
 
 .column-section .col-md-4:last-child {
@@ -190,16 +226,24 @@ p {
     .column-section .col-md-4:last-child {
         border-bottom: none;
     }
+
+    .hero-content {
+        height: 100vh;
+        align-content: center;
+    }
 }
 
 .column-section .col-md-4 {
     padding: 20px;
+    color: var(--font_colour);
 }
 
 /* Form Styling */
 
-.top-of-form {
+.top-of-form,
+.top-of-form p {
     text-align: center;
+    color: var(--form_colour);
 }
 
 .no-label+label {
@@ -223,7 +267,7 @@ p {
     width: 500px;
     border-radius: 5px;
     background-color: var(--je_pink);
-    color: #fff;
+    color: var(--form_colour);
 }
 
 @media (min-width: 767.98px) {
@@ -261,6 +305,7 @@ p {
 .form-row .form-group {
     /* flex: 1; */
     margin-right: 10px;
+    margin-left: 0;
 }
 
 .form-row .form-group:last-child {
@@ -300,8 +345,9 @@ input::placeholder {
 
 .form-submitted-bg {
     position: relative;
-    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1697049553/IMG-6651_oiolqr.jpg') no-repeat center top fixed;
+    background: url('https://res.cloudinary.com/drqe8p5dw/image/upload/v1721663618/IMG_0137_ndpgof.jpg') no-repeat 50% 25% fixed;
     background-size: cover;
+    color: white;
 }
 
 .form-submitted-bg::before {
@@ -350,7 +396,30 @@ input::placeholder {
     filter: brightness(0.9);
 }
 
+.hidden-form-col {
+    display: none;
+}
+
 /* Adjustments for smaller screens */
+
+@media (max-width: 1022px) {
+    .btn {
+        width: 75px;
+    }
+
+    .button-column {
+        flex-direction: column;
+    }
+
+    .col-md-1 {
+        display: flex;
+    }
+
+    .hidden-form-col {
+        display: block;
+    }
+}
+
 @media (max-width: 770px) {
     .btn {
         width: 35px;
@@ -371,4 +440,13 @@ input::placeholder {
     .guest {
         margin-right: 95px;
     }
+
+    .button-column {
+        flex-direction: row;
+    }
+
+    .hidden-form-col {
+        display: none;
+    }
+    
 }
