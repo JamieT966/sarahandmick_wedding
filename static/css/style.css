@@ -239,6 +239,10 @@ p {
     margin: 0 auto;
 }
 
+.location-icon {
+    margin-top: 50px;
+}
+
 @media (max-width: 767.98px) {
     .column-section .col-md-4 {
         border-right: none;
@@ -445,10 +449,6 @@ input::placeholder {
 
     .hero-section h1, .hero-section p {
         color: var(--form_colour);
-    }
-
-    .location-icon {
-        margin-top: 30px;
     }
 
     .left-column {
