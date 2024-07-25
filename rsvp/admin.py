@@ -12,11 +12,11 @@ def export_to_csv(modeladmin, request, queryset):
     writer = csv.writer(response)
 
     headers = [
-        'Guest 1 Name', 'Will Attend (Guest 1)', 'Dietary Requirements (Guest 1)', 'Other Dietary Needs (Guest 1)', 'Attending Day 2 (Guest 1)',
-        'Guest 2 Name', 'Will Attend (Guest 2)', 'Dietary Requirements (Guest 2)', 'Other Dietary Needs (Guest 2)', 'Attending Day 2 (Guest 2)',
-        'Guest 3 Name', 'Will Attend (Guest 3)', 'Dietary Requirements (Guest 3)', 'Other Dietary Needs (Guest 3)', 'Attending Day 2 (Guest 3)',
-        'Guest 4 Name', 'Will Attend (Guest 4)', 'Dietary Requirements (Guest 4)', 'Other Dietary Needs (Guest 4)', 'Attending Day 2 (Guest 4)',
-        'Guest 5 Name', 'Will Attend (Guest 5)', 'Dietary Requirements (Guest 5)', 'Other Dietary Needs (Guest 5)', 'Attending Day 2 (Guest 5)',
+        'Guest 1 Name', 'Attending (Guest 1)', 'Dietary Requirements (Guest 1)', 'Other Dietary Needs (Guest 1)', 'Attending Day 2 (Guest 1)',
+        'Guest 2 Name', 'Attending (Guest 2)', 'Dietary Requirements (Guest 2)', 'Other Dietary Needs (Guest 2)', 'Attending Day 2 (Guest 2)',
+        'Guest 3 Name', 'Attending (Guest 3)', 'Dietary Requirements (Guest 3)', 'Other Dietary Needs (Guest 3)', 'Attending Day 2 (Guest 3)',
+        'Guest 4 Name', 'Attending (Guest 4)', 'Dietary Requirements (Guest 4)', 'Other Dietary Needs (Guest 4)', 'Attending Day 2 (Guest 4)',
+        'Guest 5 Name', 'Attending (Guest 5)', 'Dietary Requirements (Guest 5)', 'Other Dietary Needs (Guest 5)', 'Attending Day 2 (Guest 5)',
         'Music Requests'
     ]
     writer.writerow(headers)
@@ -49,8 +49,8 @@ class RSVPAdmin(admin.ModelAdmin):
     get_guest_1_name.short_description = 'Guest 1 Name'
 
     def get_will_attend_1(self, obj):
-        return obj.will_attend_1
-    get_will_attend_1.short_description = 'Will Attend (Guest 1)'
+        return 'Yes' if obj.will_attend_1 else 'No'
+    get_will_attend_1.short_description = 'Attending (Guest 1)'
 
     def get_dietary_requirements_1(self, obj):
         return ", ".join([dr.name for dr in obj.dietary_requirements_1.all()])
@@ -70,8 +70,8 @@ class RSVPAdmin(admin.ModelAdmin):
     get_guest_2_name.short_description = 'Guest 2 Name'
 
     def get_will_attend_2(self, obj):
-        return obj.will_attend_2
-    get_will_attend_2.short_description = 'Will Attend (Guest 2)'
+        return 'Yes' if obj.will_attend_2 else 'No'
+    get_will_attend_2.short_description = 'Attending (Guest 2)'
 
     def get_dietary_requirements_2(self, obj):
         return ", ".join([dr.name for dr in obj.dietary_requirements_2.all()])
@@ -91,8 +91,8 @@ class RSVPAdmin(admin.ModelAdmin):
     get_guest_3_name.short_description = 'Guest 3 Name'
 
     def get_will_attend_3(self, obj):
-        return obj.will_attend_3
-    get_will_attend_3.short_description = 'Will Attend (Guest 3)'
+        return 'Yes' if obj.will_attend_3 else 'No'
+    get_will_attend_3.short_description = 'Attending (Guest 3)'
 
     def get_dietary_requirements_3(self, obj):
         return ", ".join([dr.name for dr in obj.dietary_requirements_3.all()])
@@ -112,8 +112,8 @@ class RSVPAdmin(admin.ModelAdmin):
     get_guest_4_name.short_description = 'Guest 4 Name'
 
     def get_will_attend_4(self, obj):
-        return obj.will_attend_4
-    get_will_attend_4.short_description = 'Will Attend (Guest 4)'
+        return 'Yes' if obj.will_attend_4 else 'No'
+    get_will_attend_4.short_description = 'Attending (Guest 4)'
 
     def get_dietary_requirements_4(self, obj):
         return ", ".join([dr.name for dr in obj.dietary_requirements_4.all()])
@@ -133,8 +133,8 @@ class RSVPAdmin(admin.ModelAdmin):
     get_guest_5_name.short_description = 'Guest 5 Name'
 
     def get_will_attend_5(self, obj):
-        return obj.will_attend_5
-    get_will_attend_5.short_description = 'Will Attend (Guest 5)'
+        return 'Yes' if obj.will_attend_5 else 'No'
+    get_will_attend_5.short_description = 'Attending (Guest 5)'
 
     def get_dietary_requirements_5(self, obj):
         return ", ".join([dr.name for dr in obj.dietary_requirements_5.all()])
