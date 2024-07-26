@@ -17,9 +17,11 @@ def home_view(request):
                 instance.will_attend_5
             ])
 
-            subject = "RSVP Confirmation"
+            subject = "New RSVP"
             # Initialize the message content
             message_parts = []
+
+            message_parts.append(f"Hi Sarah & Michael,\n\nA new RSVP has been submitted, see details below:\n")
 
             def get_dietary_info(dietary_requirements, other_dietary_input):
                 # Collect dietary requirements
@@ -51,61 +53,63 @@ def home_view(request):
             # Guest 2
             if instance.will_attend_2:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_2}\n"
+                    f"Guest Name: {instance.name_2}\n"
                     f"Coming to the Wedding: {'Yes'}\n"
                     f"Dietary Requirements: {get_dietary_info(instance.dietary_requirements_2, instance.other_dietary_input_2)}\n"
                     f"Attending Day 2: {instance.attending_day2_2}\n"
                 )
             elif instance.name_2:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_2}\n"
+                    f"Guest Name: {instance.name_2}\n"
                     f"Coming to the Wedding: {'No'}\n"
                 )
             
             # Guest 3
             if instance.will_attend_3:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_3}\n"
+                    f"Guest Name: {instance.name_3}\n"
                     f"Coming to the Wedding: {'Yes'}\n"
                     f"Dietary Requirements: {get_dietary_info(instance.dietary_requirements_3, instance.other_dietary_input_3)}\n"
                     f"Attending Day 2: {instance.attending_day2_3}\n"
                 )
             elif instance.name_3:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_3}\n"
+                    f"Guest Name: {instance.name_3}\n"
                     f"Coming to the Wedding: {'No'}\n"
                 )
             
             # Guest 4
             if instance.will_attend_4:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_4}\n"
+                    f"Guest Name: {instance.name_4}\n"
                     f"Coming to the Wedding: {'Yes'}\n"
                     f"Dietary Requirements: {get_dietary_info(instance.dietary_requirements_4, instance.other_dietary_input_4)}\n"
                     f"Attending Day 2: {instance.attending_day2_4}\n"
                 )
             elif instance.name_4:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_4}\n"
+                    f"Guest Name: {instance.name_4}\n"
                     f"Coming to the Wedding: {'No'}\n"
                 )
             
             # Guest 5
             if instance.will_attend_5:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_5}\n"
+                    f"Guest Name: {instance.name_5}\n"
                     f"Coming to the Wedding: {'Yes'}\n"
                     f"Dietary Requirements: {get_dietary_info(instance.dietary_requirements_5, instance.other_dietary_input_5)}\n"
                     f"Attending Day 2: {instance.attending_day2_5}\n"
                 )
             elif instance.name_5:
                 message_parts.append(
-                    f"\nGuest Name: {instance.name_5}\n"
+                    f"Guest Name: {instance.name_5}\n"
                     f"Coming to the Wedding: {'No'}\n"
                 )
             
             # Music Requests
-            message_parts.append(f"\nMusic Requests: {instance.music_requests}\n")
+            message_parts.append(f"Music Requests: {instance.music_requests}\n")
+
+            message_parts.append(f"Thanks,\nJamie")
 
             # Join all parts into a single message
             message = "\n".join(message_parts)
@@ -114,7 +118,7 @@ def home_view(request):
                 send_mail(
                     subject,
                     message,
-                    'no-reply@mcgettricklynders.com',
+                    'jamie@mcgettricklynders.com',
                     ['jamietarpey@gmail.com'],
                 )
             except Exception as e:
