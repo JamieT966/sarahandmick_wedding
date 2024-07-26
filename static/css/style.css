@@ -1,17 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 
 :root {
-/*
-    --je_green: #344F3F;
-    --je_pink: #E4AEC5;
-    --je_light_green: #82A284;
-    --je_light_pink: #FFC4DD;
-    --new_pink: #BF7D7D;
-    --slight_pink_bg: #fff7f9;
-    --font_colour: #212529; 
-    --form_colour: #fff; */
-
-    --je_green: #344F3F;
+    /* --je_green: #344F3F;
     --je_pink: #BF7D7D;
     --je_light_green: #82A284;
     --je_light_pink: #FFC4DD;
@@ -19,7 +9,22 @@
     --slight_pink_bg: #fff7f9;
     --font_colour: #212529; 
     --form_colour: #fff;
-    --form-bg-color: #E4AEC5;
+    --form-bg-color: #E4AEC5; 
+    --form-border-color: #edd28b;
+    */
+
+    --je_green: #344F3F;
+    --je_pink: #d37483;
+    --je_light_green: #82A284;
+    --je_light_pink: #FFC4DD;
+    --new_pink: #fff;
+    --slight_pink_bg: #e298a4;
+    --font_colour: #fff; 
+    --form_colour: #fff;
+    --form-bg-color: #d37483;
+    --form-border-color: #edd28b;
+    --right-col: #e298a4;
+    --line-separator: #fff;
 
 }
 
@@ -98,6 +103,8 @@ footer {
 
 .right-column {
     background-size: cover;
+    background-color: var(--right-col);
+    color: var(--font_colour);
     min-height: 100vh; /* Ensure it covers the full viewport height */
     overflow-y: auto;
 }
@@ -167,7 +174,6 @@ p {
 
 .btn-pink {
     background-color: var(--je_pink);
-    border: 1px solid #fff;
     color: #fff;
     padding: 15px 20px;
     border-radius: 5px;
@@ -175,46 +181,30 @@ p {
     transition: background-color 0.3s, transform 0.3s;
     text-decoration: none;
     margin: 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.btn-pink:hover {
-    background-color: #d3a0a0;
-    transform: scale(1.05);
-}
-
+.btn-pink:hover,
+.btn-pink:focus,
 .btn-pink:active {
-    background-color: var(--je_pink);
-    transform: scale(1);
-}
-
-.btn-pink:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(229, 183, 183, 0.5);
+    filter: brightness(0.9);
 }
 
 .btn-green {
-    background-color: var(--je_light_green);
-    border: 1px solid white;
+    background-color: var(--je_light_green) !important;
+    border: none;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.btn-green:hover {
-    background-color: #355240;
-    /* transform: scale(1.05); */
-}
-
-.btn-green:active {
-    background-color: #344f3f;
-    transform: scale(1);
-}
-
+.btn-green:hover,
+.btn-green:active,
 .btn-green:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(52, 79, 63, 0.5);
+    filter: brightness(0.9);
 }
 
 /* Icon section */
@@ -241,13 +231,13 @@ p {
 .line-separator {
     border: none;
     height: 2px;
-    background-color: var(--je_pink);
+    background-color: var(--line-separator);
     margin: 10px auto;
     width: 75%;
 }
 
 .day-two p {
-    width: 75%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -308,6 +298,8 @@ p {
     margin-top: 50px;
     background-color: var(--form-bg-color);
     color: var(--form_colour);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
+    /* border: 2px solid var(--form-border-color); */
 }
 
 @media (min-width: 767.98px) {
@@ -405,7 +397,6 @@ input::placeholder {
 /* Add and Remove Guest Buttons */
 
 .btn {
-    border: 1px solid white !important;
     border-radius: 5px !important;
     transition: background-color 0.3s ease !important;
     padding: 10px !important;
@@ -413,10 +404,12 @@ input::placeholder {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .add-guest {
     background-color: var(--je_light_green) !important;
+    margin-right: 5px;
 }
 
 .remove-guest {
