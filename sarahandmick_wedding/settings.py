@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'rsvp',
     'crispy_forms',
     "crispy_bootstrap5",
+    'anymail',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -121,6 +122,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = 'media/'
+
+
+# Email settings
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+ANYMAIL = {
+    "MAILGUN_API_KEY": os.getenv('MAILGUN_API_KEY'),
+    "MAILGUN_API_URL": os.getenv('MAILGUN_API_URL'),
+    "MAILGUN_SENDER_DOMAIN": os.getenv('MAILGUN_SENDER_DOMAIN'),
+}
+
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
