@@ -1,18 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento:wght@400;700&display=swap');
 
 :root {
-    /* --je_green: #344F3F;
-    --je_pink: #BF7D7D;
-    --je_light_green: #82A284;
-    --je_light_pink: #FFC4DD;
-    --new_pink: #BF7D7D;
-    --slight_pink_bg: #fff7f9;
-    --font_colour: #212529; 
-    --form_colour: #fff;
-    --form-bg-color: #E4AEC5; 
-    --form-border-color: #edd28b;
-    */
-
     --je_green: #344F3F;
     --je_pink: #d37483;
     --je_light_green: #82A284;
@@ -25,7 +13,6 @@
     --form-border-color: #edd28b;
     --right-col: #e298a4;
     --line-separator: #fff;
-
 }
 
 * {
