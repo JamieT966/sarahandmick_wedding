@@ -120,7 +120,7 @@ def home_view(request):
                     subject,
                     message,
                     'SMWedding@mcgettricklynders.com',
-                    ['jamietarpey@gmail.com'],
+                    ['sarahmg89@hotmail.com'],
                 )
             except Exception as e:
                 print(f"Error sending email: {e}")
