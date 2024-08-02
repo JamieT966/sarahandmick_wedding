@@ -17,7 +17,7 @@ def home_view(request):
                 instance.will_attend_5
             ])
 
-            subject = "New RSVP"
+            subject = f"RSVP from {instance.name_1}"
             # Initialize the message content
             message_parts = []
 
@@ -107,7 +107,8 @@ def home_view(request):
                 )
             
             # Music Requests
-            message_parts.append(f"Music Requests: {instance.music_requests}\n")
+            if guests_attending:
+                message_parts.append(f"Music Requests: {instance.music_requests}\n")
 
             message_parts.append(f"Thanks,\nJamie")
 
@@ -118,7 +119,7 @@ def home_view(request):
                 send_mail(
                     subject,
                     message,
-                    'jamie@mcgettricklynders.com',
+                    'SMWedding@mcgettricklynders.com',
                     ['jamietarpey@gmail.com'],
                 )
             except Exception as e:
